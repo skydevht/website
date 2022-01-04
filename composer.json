@@ -1,0 +1,34 @@
+{
+    "name": "skydevht/blog",
+    "description": "My personal site",
+    "type": "sculpin-skeleton",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Holy-Elie Scaide",
+            "email": "hash@hescaide.me",
+            "homepage": "https://hescaide.me"
+        }
+    ],
+    "require": {
+        "sculpin/sculpin": "^3.1"
+    },
+    "scripts": {
+        "publish": [
+            "./publish.sh"
+        ],
+        "sculpin-watch": [
+            "Composer\\Config::disableProcessTimeout",
+            "sculpin generate --watch --server"
+        ],
+        "yarn-watch": [
+            "Composer\\Config::disableProcessTimeout",
+            "yarn encore dev --watch"
+        ]
+    },
+    "config": {
+        "allow-plugins": {
+            "sculpin/sculpin-theme-composer-plugin": true
+        }
+    }
+}
