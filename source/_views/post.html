@@ -7,7 +7,8 @@
 {% block content_wrapper %}
     <article>
         <header>
-            <h2 class="is-size-2 mb-5">{{ page.title }} <small>post</small></h2>
+          <h6 class="is-size-6">{{ page.date | date("F j, Y") }}</h6>
+          <h2 class="is-size-2 mb-5">{{ page.title }}</h2>
         </header>
         <div class="content mb-4">
             {{ page.blocks.content|raw }}
