@@ -42,7 +42,7 @@ Services are for everything that interacts with the outside world. REST API, Baa
 These are small functions that contains logic you find yourself reusing throughout the app. Things like concatenating the first name and last name of the user, formatting strings, calculating various values... I just group them by category (`user.js`, `format.js`) and put them inside a `util` folder.
 
 # State Management
-This is an optional one. I mostly use Redux for caching API responses. It permits me to go from an asynchronous paradigm to a reactive one. I found myself not using it with Firebase and Apollo GraphQL, as the latter ones have their caching mechanism. When I do use Redux, I used the `rematch` library is it eliminates a lot of the boilerplate.
+This is an optional one. I mainly use Redux for caching API responses. It permits me to go from an asynchronous paradigm to a reactive one. I found myself not using it with Firebase and Apollo GraphQL, as the latter ones have their caching mechanism. When I do use Redux, I use the `rematch` library as it eliminates the usual boilerplate.
 
 # Utility Libraries
 The most notable examples are theming and localization libraries. They do not deal with the outside world but are important enough to not be relegated to the `util` folder. They are commonly stored alongside `App.js` as they will be integrated in it.
