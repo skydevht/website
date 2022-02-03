@@ -10,6 +10,7 @@ Laravel's framework principles, together with “Clean architecture” from Robe
 # Main files
 
 The most important files for me are the following:
+
 - `index.js`,
 - `App.js`,
 - `config.js`,
