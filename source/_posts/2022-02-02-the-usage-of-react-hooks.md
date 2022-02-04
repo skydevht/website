@@ -24,7 +24,7 @@ To explain state, we can take water as an analogy. Water can have multiple aspec
 If we create the variable inside the function of the component, it will be deleted when the function returns. And props are currently the only way we're able to update the component. This is where **useState** comes in. ** useState** will provide you with a value that will not be destroyed when the function ends and, when changed, will trigger an update for the component — the function of the component will be executed again. **useState** returns an array: The first element is our value, the second is the function to update the value. Assigning a new value directly will not work. This is our updated component:
  
 {% verbatim %}
- ```javascript
+```javascript
  const Message = (props) => {
 	const [color, setColor] = useState('blue');
 	const handleClick = () => {
