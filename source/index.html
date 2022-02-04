@@ -8,7 +8,7 @@ use:
     - posts
 ---
 {% for post in page.pagination.items %}
-<article class="mb-3">
+<article class="mb-6">
   <header>
     <h6 class="is-size-6">{{ post.date | date("F j, Y") }}</h6>
     <h2 class="is-size-2 mb-5"><a href="{{ site.url }}{{ post.url }}">{{ post.title }}</a></h2>
@@ -25,10 +25,23 @@ use:
   </p>
   {% endif %}
 </article>
+<hr>
 {% endfor %}
 {% if page.pagination.previous_page or page.pagination.next_page %}
-<div class="is-flex is-flex-direction-row is-justify-content-space-between is-align-items-center mt-6">
-  {% if page.pagination.previous_page %}<a class="button is-ghost" href="{{ site.url }}{{ page.pagination.previous_page.url }}">Newer Posts</a>{% endif %}
-  {% if page.pagination.next_page %}<a class="button is-ghost" href="{{ site.url }}{{ page.pagination.next_page.url }}">Older Posts</a>{% endif %}
-</div>
+<nav class="article is-flex is-justify-content-space-between is-flex-wrap-nowrap">
+  {% if page.pagination.next_page %}
+  <div>
+    <a class="previous is-italic" href="{{ site.url }}{{ page.pagination.next_page.url }}" title="Older Posts">
+      <span class="is-size-5">← Older Posts</span>
+    </a>
+  </div>
+  {% endif %}
+  {% if page.pagination.previous_page %}
+  <div>
+    <a class="previous is-italic" href="{{ site.url }}{{ page.pagination.previous_page.url }}" title="Newer Posts">
+      <span class="is-size-5">Newer Posts →</span>
+    </a>
+  </div>
+  {% endif %}
+</nav>
 {% endif %}

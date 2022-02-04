@@ -23,6 +23,7 @@ To explain state, we can take water as an analogy. Water can have multiple aspec
  
 If we create the variable inside the function of the component, it will be deleted when the function returns. And props are currently the only way we're able to update the component. This is where **useState** comes in. ** useState** will provide you with a value that will not be destroyed when the function ends and, when changed, will trigger an update for the component — the function of the component will be executed again. **useState** returns an array: The first element is our value, the second is the function to update the value. Assigning a new value directly will not work. This is our updated component:
  
+{% verbatim %}
  ```javascript
  const Message = (props) => {
 	const [color, setColor] = useState('blue');
@@ -36,6 +37,7 @@ If we create the variable inside the function of the component, it will be delet
 	);
 }
  ```
+{% endverbatim %}
  
 Note that I set an initial value for the color. A rough overview on what happens under the hood:
 
@@ -47,6 +49,7 @@ Now, every time we click on our message, its color will alternate between blue a
  
 Remember that our component started pure, always returning the same tree when provided with the same props. We added state, but to manipulate it, we need an external event. To link state and props together, and to react to changes to both, we need a way to detect when they’ve been modified. And that’s what **useEffect** give us. With **useEffect**, you can have a piece of logic that will run once the component is mounted — created and added to the web page — and when any element of a provided set of state variables and props — the dependencies — is updated. For our component, we have a unique element to observe — the text prop. Here is the new code:
  
+{% verbatim %}
 ```javascript
 const Message = ({ text }) => {
 	const [color, setColor] = useState(null);
@@ -61,6 +64,7 @@ const Message = ({ text }) => {
 	);
 }
 ```
+{% endverbatim %}
  
 That’s when it’s got tricky. We now have multiple stages:
  
@@ -74,6 +78,7 @@ With these two hooks, you can replicate the majority of the features that were o
 
 **useRef** comes in when you want to store a value after the code of the component is executed for the next execution, but you don’t want its mutation to trigger a new execution. It acts like a global variable in respect to the component. If we take the following code:
 
+{% verbatim %}
 ```javascript
 const Message = ({ text }) => {
 	const interval = useRef(null)
@@ -93,11 +98,13 @@ const Message = ({ text }) => {
 	);
 }
 ```
+{% endverbatim %}
 
 The component is now flashing between blue and red every second. When we unmount the component, we need to remove the interval to stop `setColor` being called. The long-lived aspect that **useRef** provides is useful in that case. Notice that we don’t update the object returned by **useRef**, but its property `current`. We removed the `text` prop from the dependencies set, as our effect role is to initialize the interval. Additionally, it returns a function to be executed when the component is unmounted, clearing the interval.
 
 **useMemo** is for improving the performance of our code. Sometimes, we have to do computation on our state and props, resulting in a new value. If we add the code to the body of our component, it will be run each update. **useMemo** allows us to run the computation when the dependencies set changes and not on every render. Let’s take a look at an example:
 
+{% verbatim %}
 ```javascript
 const Message = ({ text }) => {
 	const [color, setColor] = useState(null);
@@ -113,11 +120,13 @@ const Message = ({ text }) => {
 	);
 }
 ```
+{% endverbatim %}
 
 `getInvertedColor` is our heavy computation code. **useMemo**, takes a function and a dependencies array. The body of that function should be statements that we could have put inside the body of the component, and should follow the same pure paradigm — no side effect. The return value is returned directly by useMemo. The function executes on the mounting stage and when the dependencies update. But the return value will be stored — memoized — and return directly otherwise. We can mention the `useCallback` hook, which memoizes a function instead.  
 
 The most important part is that you can refactor the above code to create your own hook, making it possible to share functionalities between components.
 
+{% verbatim %}
 ```javascript
 const useColorFromText = (text) => {
  const [color, setColor] = useState(null);
@@ -136,3 +145,4 @@ const Message = ({ text }) => {
 	);
 }
 ```
+{% endverbatim %}
