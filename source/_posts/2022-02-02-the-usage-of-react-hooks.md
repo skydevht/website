@@ -122,7 +122,7 @@ const Message = ({ text }) => {
 ```
 {% endverbatim %}
 
-`getInvertedColor` is our heavy computation code. **useMemo**, takes a function and a dependencies array. The body of that function should be statements that we could have put inside the body of the component, and should follow the same pure paradigm — no side effect. The return value is returned directly by useMemo. The function executes on the mounting stage and when the dependencies update. But the return value will be stored — memoized — and return directly otherwise. We can mention the `useCallback` hook, which memoizes a function instead.  
+`getInvertedColor` is our heavy computation code. **useMemo**, takes a function and a dependencies array. The body of that function should be statements that we could have put inside the body of the component, and should follow the same pure paradigm — no side effect. The return value is returned directly by useMemo. The provided function executes on the mounting stage and when the dependencies are changed. But the return value will be stored — memoized — and return directly otherwise. We can mention the `useCallback` hook, which memoizes a function instead.  
 
 The most important part is that you can refactor the above code to create your own hook, making it possible to share functionalities between components.
 
