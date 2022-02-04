@@ -18,11 +18,11 @@ const Message = (props) => {
 A bare component should be pure. If the `props` object does not change — by altering the `text` prop —, neither should the returned component tree.  The lifecycle is the stages a component goes through from creation to deletion. For a functional one, the lifecycle is another execution of the component’s code. Mutating the props can trigger this new execution.
 
 What if you want to change the color of the text when the user clicks on it? You could add a new prop called `color`, but the parent component will then be responsible for updating this new prop. The consequence is a tight coupling — one depends on the other — between the two components. The parent will have the code to declare and update the prop, while our component is the one using it and is responsible for triggering the change. To resolve the situation, we shall use the `state` concept.
- 
+
 To explain state, we can take water as an analogy. Water can have multiple aspects: liquid, vapor, and ice. Which all depends on the same measure inherent to the water — temperature. In other words, the temperature of the water determines the current state of the water. And if we know the current value of the temperature, it’s easy to know its aspect. Like temperature, our above component can have a variable called `color` which will always be the current color of the text. But, this has its limitations.
- 
+
 If we create the variable inside the function of the component, it will be deleted when the function returns. And props are currently the only way we're able to update the component. This is where **useState** comes in. ** useState** will provide you with a value that will not be destroyed when the function ends and, when changed, will trigger an update for the component — the function of the component will be executed again. **useState** returns an array: The first element is our value, the second is the function to update the value. Assigning a new value directly will not work. This is our updated component:
- 
+
 {% verbatim %}
 ```javascript
  const Message = (props) => {
@@ -36,7 +36,7 @@ If we create the variable inside the function of the component, it will be delet
 		</p>
 	);
 }
- ```
+```
 {% endverbatim %}
  
 Note that I set an initial value for the color. A rough overview on what happens under the hood:
