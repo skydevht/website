@@ -1,5 +1,26 @@
 require('../css/app.scss');
 
+function loadFonts () {
+  if (sessionStorage.getItem('fontsLoaded')) {
+    document.documentElement.classList.add('fonts-loaded')
+    return 
+  } 
+
+  if ('fonts' in document) {
+    Promise.all([
+      document.fonts.load('1em Nunito'),
+      document.fonts.load('700 1em Nunito'),
+      document.fonts.load('italic 1em Nunito'),
+      document.fonts.load('italic 700 1em Nunito')
+    ]).then(() => {
+      document.documentElement.classList.add('fonts-loaded');
+      sessionStorage.setItem('fontsLoaded', 'true');
+    })  
+  }
+}
+
+loadFonts()
+
 document.addEventListener('DOMContentLoaded', function () {
 
   // Dropdowns in navbar
