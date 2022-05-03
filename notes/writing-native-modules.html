@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <title>Writing native modules</title>
+    <meta charset="utf-8" />
+    <meta name="theme-color" content="#ffffff" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="robots" content="noindex, follow" />
+    <link rel="alternate" type="application/atom+xml" href="/atom.xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/css/bulma.min.css" />
+    <link rel="stylesheet" href="../style.css" />
+</head>
+
+<body>
+    <header>
+        <nav class="navbar" role="navigation" aria-label="main navigation">
+            <div class="container">
+                <div class="navbar-brand">
+                    <a class="navbar-item is-tab" href="/"><span>Home</span></a>
+
+                    <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false"
+                        data-target="main-navbar">
+                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true"></span>
+                    </a>
+                </div>
+
+                <div id="main-navbar" class="navbar-menu">
+                    <div class="navbar-start">
+                        <a class="navbar-item is-tab" href="../portfolio.html">Portfolio</a>
+                        <a class="navbar-item is-tab is-active" href="../notes.html">Notes</a>
+                        <div class="navbar-item">
+                            <a class="button is-info is-small" href="../media/cv.pdf">View CV</a>
+                        </div>
+                    </div>
+                    <div class="navbar-end">
+                        <div class="navbar-item">
+                            <span class="has-text-weight-bold has-text-info-dark">By Holy-Elie Scaide</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <section class="hero is-info">
+        <div class="hero-body">
+            <p class="title has-text-centered">
+                Writing native modules
+            </p>
+        </div>
+    </section>
+    <main class="container p-6">
+        <div class="columns">
+            <div class="column is-10 is-offset-1">
+                <div class="content">
+                    <p>One of the milestones of being a React Native developer is writing your first native module. At
+                        first, it may appear a daunting task, but the module part is easy to wrap your head around. Here
+                        are a few important points to keep in mind. The same applies to Cordova.</p>
+
+                    <h1 id="The Bridge">The Bridge</h1>
+                    <p>The bridge concept is not a unique to React Native. It is a common occurrence when you’re dealing
+                        with many languages or multiples platforms. It is how two different layers in a single system
+                        communicate with each other.</p>
+
+                    <p>The main logic of the application resides usually in one of the layer, while the feature will be
+                        implemented in the other layer. The first will be the caller and the second will be the callee.
+                        For the two to communicate, there should be a common ground between the two, which we can call
+                        the host.</p>
+
+                    <p>The host can be the same as one of the layers. In game engines, which often need to add a
+                        scripting layer, the host is the caller and the callee will be the scripts that are written to
+                        customize components’ behaviors. In our case (React Native and Cordova) the host is the callee.
+                        Our code reside in the JavaScript interpreter (custom engine or web view).</p>
+
+                    <p>As the host is the one running the layers, it is trivial for it to customize their engine or
+                        interpreter. It will provide new functions in addition to the standard ones, which will be how
+                        the layer will get back to the host. Those functions may be arranged in a more cohesive set for
+                        a more intuitive use. It will replicate the caller layer’s data types in the callee layer.</p>
+
+                    <h1 id="A module is a plugin">A module is a plugin</h1>
+                    <p>Occasionally, the callee layer will need to execute before getting called, or even before the
+                        main layer is executed. In those cases, there will be a general framework to follow with hooks.
+                        The framework is to tell the host the functions to call, initialize or destroy the module. The
+                        hooks are there to add new features to the host without the other layer intervention (which can
+                        not access these parts directly in our case). These hooks are why we normally need a module in
+                        the first place.</p>
+
+                    <h1 id="A module is a library">A module is a library</h1>
+                    <p>But, how do we architect the module in the first place? From the host's perspective, it needs to
+                        be executable logic. While the host is initializing, it may run initialization code in the
+                        module. The same when the host is terminated. Logic in the module will mirror the host
+                        lifecycle. But from the perspective of the caller layer, it needs to be a library.</p>
+
+                    <p>Ordinarily, the module purpose is to provide a new feature to the caller layer. It needs to be
+                        architected the same way as the libraries native to the caller layer. Which is to provide a
+                        consistent set of functions (API) for the caller layer to use. At the callee side, we need to
+                        mark those functions, and they need to follow the same signature (using the replicated data
+                        types).</p>
+
+                    <h1 id="In conclusion">In conclusion</h1>
+                    <p>The above is my mental model when writing a native module. The implementation will differ based
+                        on the platforms, but it provides a quick way to pick the relevant parts to learn from the
+                        documentation and example codes.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer class="footer">
+        <div class="container content has-text-centered">
+            <p class="has-text-weight-bold">
+                Hi! I'm Holy-Elie and this is my personal website. I share personal
+                notes about software engineering and other bits of informations that I
+                find interesting. If you like what I'm doing, you can always
+                <a href="https://www.buymeacoffee.com/hescaide">buy me a coffee</a>.
+            </p>
+            <p class="has-text-weight-bold">
+                Follow via <a href="https://twitter.com/hescaide">Twitter</a>
+                <br />
+                Or send me an email to hey[at]hescaide[dot]me
+            </p>
+            <span class="text-muted">&copy; 2022 Holy-Elie Scaide</span>
+        </div>
+    </footer>
+    <script src="../app.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet" />
+</body>
+
+</html>

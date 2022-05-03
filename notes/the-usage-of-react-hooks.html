@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <title>The usage of React Hooks</title>
+    <meta charset="utf-8" />
+    <meta name="theme-color" content="#ffffff" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="robots" content="noindex, follow" />
+    <link rel="alternate" type="application/atom+xml" href="/atom.xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/css/bulma.min.css" />
+    <link rel="stylesheet" href="../style.css" />
+</head>
+
+<body>
+    <header>
+        <nav class="navbar" role="navigation" aria-label="main navigation">
+            <div class="container">
+                <div class="navbar-brand">
+                    <a class="navbar-item is-tab" href="/"><span>Home</span></a>
+
+                    <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false"
+                        data-target="main-navbar">
+                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true"></span>
+                    </a>
+                </div>
+
+                <div id="main-navbar" class="navbar-menu">
+                    <div class="navbar-start">
+                        <a class="navbar-item is-tab" href="../portfolio.html">Portfolio</a>
+                        <a class="navbar-item is-tab is-active" href="../notes.html">Notes</a>
+                        <div class="navbar-item">
+                            <a class="button is-info is-small" href="../media/cv.pdf">View CV</a>
+                        </div>
+                    </div>
+                    <div class="navbar-end">
+                        <div class="navbar-item">
+                            <span class="has-text-weight-bold has-text-info-dark">By Holy-Elie Scaide</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <section class="hero is-info">
+        <div class="hero-body">
+            <p class="title has-text-centered">
+                The usage of React hooks
+            </p>
+        </div>
+    </section>
+    <main class="container p-6">
+        <div class="columns">
+            <div class="column is-10 is-offset-1">
+                <div class="content">
+                    <p>Functional components were a part of React before the introduction of Hooks. But their usage was
+                        restricted to creating pure components, as they did not possess the more complex lifecycle and
+                        state management of a class component. Hooks add these to functional components and allow us an
+                        easier way to reuse functionalities.</p>
+
+                    <h1 id="Hooks">Hooks</h1>
+                    <p>What are hooks? Hooks are functions. And like all functions, you provide them with arguments, and
+                        they return values. To understand the usage of hooks is to understand where your arguments and
+                        the returned values fit into your component usage.</p>
+
+                    <p>Let's start with the basic: the function component. It accepts props as parameters and return a
+                        component tree. You can take the following as an example.</p>
+
+                    <pre><code class='code-multiline' lang='javascript'><span class="sf_code_keyword">const</span> <span class="sf_code_function-variable">Message</span> <span class="sf_code_operator">=</span> <span class="sf_code_punctuation">(</span>props<span class="sf_code_punctuation">)</span> <span class="sf_code_operator">=&gt;</span> <span class="sf_code_punctuation">{</span>
+  <span class="sf_code_keyword">return</span> <span class="sf_code_operator">&lt;</span>p<span class="sf_code_operator">&gt;</span><span class="sf_code_punctuation">{</span>props<span class="sf_code_punctuation">.</span>text<span class="sf_code_punctuation">}</span><span class="sf_code_operator">&lt;/</span>p<span class="sf_code_operator">&gt;</span>
+<span class="sf_code_punctuation">}</span></code></pre>
+                    <p><br></p>
+                    <p>A bare component should be pure. If the <code class='code-inline'>props</code> object does not
+                        change — by altering the <code class='code-inline'>text</code> prop —, neither should the
+                        returned component tree. The lifecycle is the stages a component goes through from creation to
+                        deletion. For a functional one, the lifecycle is another execution of the component’s code.
+                        Mutating the props can trigger this new execution.</p>
+
+                    <h1 id="useState">useState</h1>
+                    <p>What if you want to change the color of the text when the user clicks on it? You could add a new
+                        prop called <code class='code-inline'>color</code>, but the parent component will then be
+                        responsible for updating this new prop. The consequence is a tight coupling — one depends on the
+                        other — between the two components. The parent will have the code to declare and update the
+                        prop, while our component is the one using it and is responsible for triggering the change. To
+                        resolve the situation, we shall use the <code class='code-inline'>state</code> concept.</p>
+
+                    <p>To explain state, we can take water as an analogy. Water can have multiple aspects: liquid,
+                        vapor, and ice. Which all depends on the same measure inherent to the water — temperature. In
+                        other words, the temperature of the water determines the current state of the water. And if we
+                        know the current value of the temperature, it’s easy to know its aspect. Like temperature, our
+                        above component can have a variable called <code class='code-inline'>color</code> which will
+                        always be the current color of the text. But, this has its limitations.</p>
+
+                    <p>If we create the variable inside the function of the component, it will be deleted when the
+                        function returns. And props are currently the only way we are able to update the component. This
+                        is where useState comes in. useState will provide you with a value that will not be destroyed
+                        when the function ends and, when changed, will trigger an update for the component — the
+                        function of the component will be executed again. useState returns an array: The first element
+                        is our value, the second is the function to update the value. Assigning a new value directly
+                        will not work. This is our updated component:</p>
+
+                    <pre><code class='code-multiline' lang='javascript'> <span class="sf_code_keyword">const</span> <span class="sf_code_function-variable">Message</span> <span class="sf_code_operator">=</span> <span class="sf_code_punctuation">(</span>props<span class="sf_code_punctuation">)</span> <span class="sf_code_operator">=&gt;</span> <span class="sf_code_punctuation">{</span>
+    <span class="sf_code_keyword">const</span> <span class="sf_code_punctuation">[</span>color<span class="sf_code_punctuation">,</span> setColor<span class="sf_code_punctuation">]</span> <span class="sf_code_operator">=</span> <span class="sf_code_function">useState</span><span class="sf_code_punctuation">(</span><span class="sf_code_string">'blue'</span><span class="sf_code_punctuation">);</span>
+    <span class="sf_code_keyword">const</span> <span class="sf_code_function-variable">handleClick</span> <span class="sf_code_operator">=</span> <span class="sf_code_punctuation">()</span> <span class="sf_code_operator">=&gt;</span> <span class="sf_code_punctuation">{</span>
+        <span class="sf_code_function">setColor</span><span class="sf_code_punctuation">(</span>color <span class="sf_code_operator">===</span> <span class="sf_code_string">'blue'</span> <span class="sf_code_operator">?</span> <span class="sf_code_string">'red'</span> <span class="sf_code_punctuation">:</span> <span class="sf_code_string">'blue'</span><span class="sf_code_punctuation">);</span>
+    <span class="sf_code_punctuation">}</span>
+    <span class="sf_code_keyword">return</span> <span class="sf_code_punctuation">(</span>
+        <span class="sf_code_operator">&lt;</span>p style<span class="sf_code_operator">=</span><span class="sf_code_punctuation">{{</span>color<span class="sf_code_punctuation">:</span> color<span class="sf_code_punctuation">}}</span> onClick<span class="sf_code_operator">=</span><span class="sf_code_punctuation">{</span>handleClick<span class="sf_code_punctuation">}</span><span class="sf_code_operator">&gt;</span>
+            <span class="sf_code_punctuation">{</span>props<span class="sf_code_punctuation">.</span>text<span class="sf_code_punctuation">}</span>
+        <span class="sf_code_operator">&lt;/</span>p<span class="sf_code_operator">&gt;</span>
+    <span class="sf_code_punctuation">);</span>
+<span class="sf_code_punctuation">}</span>
+</code></pre>
+                    Note that I set an initial value for the color. A rough overview on what happens under the hood:
+
+                    <ul>
+                        <li>For the initial execution of our code, we called useState with the initial value we want. It
+                            returns this value, and we store it in <code class='code-inline'>color</code>. The second
+                            element is the update function, and we store it in <code
+                                class='code-inline'>setColor</code>. React guarantees that the function will never
+                            change.
+                        </li>
+                        <li>On the subsequent runs of the code, useState returns the same value. If the update function
+                            was called, the modified value will now be the one returned. The initial value will no
+                            longer be used.
+                        </li>
+                        <li>If the component is unmounted — removed from the webpage —, we go back to step one on the
+                            next mounting.
+                        </li>
+                    </ul>
+                    <p> </p>
+                    <p>Now, every time we click on our message, its color will alternate between blue and red. This
+                        feature is self contained, making the component reusable. But right now, our state changes only
+                        when we act on it. Why not make it evolve by itself? Let’s make it update the color when the
+                        text changes.</p>
+
+                    <h1 id="useEffect">useEffect</h1>
+                    <p>Remember that our component started pure, always returning the same tree when provided with the
+                        same props. We added state, but to manipulate it, we need an external event. To link state and
+                        props together, and to react to changes to both, we need a way to detect when they’ve been
+                        modified. And that’s what useEffect give us. With useEffect, you can have a piece of logic that
+                        will run once the component is mounted — created and added to the web page — and when any
+                        element of a provided set of state variables and props — the dependencies — is updated. For our
+                        component, we have a unique element to observe — the text prop. Here is the new code:</p>
+
+                    <pre><code class='code-multiline' lang='javascript'><span class="sf_code_keyword">const</span> <span class="sf_code_function-variable">Message</span> <span class="sf_code_operator">=</span> <span class="sf_code_punctuation">({</span> text <span class="sf_code_punctuation">})</span> <span class="sf_code_operator">=&gt;</span> <span class="sf_code_punctuation">{</span>
+    <span class="sf_code_keyword">const</span> <span class="sf_code_punctuation">[</span>color<span class="sf_code_punctuation">,</span> setColor<span class="sf_code_punctuation">]</span> <span class="sf_code_operator">=</span> <span class="sf_code_function">useState</span><span class="sf_code_punctuation">(</span><span class="sf_code_keyword">null</span><span class="sf_code_punctuation">);</span>
+    <span class="sf_code_function">useEffect</span><span class="sf_code_punctuation">(()</span> <span class="sf_code_operator">=&gt;</span> <span class="sf_code_punctuation">{</span>
+        <span class="sf_code_keyword">if</span> <span class="sf_code_punctuation">(</span>color <span class="sf_code_operator">==</span> <span class="sf_code_keyword">null</span><span class="sf_code_punctuation">)</span> <span class="sf_code_function">setColor</span><span class="sf_code_punctuation">(</span><span class="sf_code_string">'blue'</span><span class="sf_code_punctuation">);</span>
+      <span class="sf_code_keyword">else</span> <span class="sf_code_function">setColor</span><span class="sf_code_punctuation">(</span>color <span class="sf_code_operator">===</span> <span class="sf_code_string">'blue'</span> <span class="sf_code_operator">?</span> <span class="sf_code_string">'red'</span> <span class="sf_code_punctuation">:</span> <span class="sf_code_string">'blue'</span><span class="sf_code_punctuation">);</span>
+    <span class="sf_code_punctuation">},</span> <span class="sf_code_punctuation">[</span>text<span class="sf_code_punctuation">])</span>
+    <span class="sf_code_keyword">return</span> <span class="sf_code_punctuation">(</span>
+        <span class="sf_code_operator">&lt;</span>p style<span class="sf_code_operator">=</span><span class="sf_code_punctuation">{{</span>color<span class="sf_code_punctuation">:</span> color <span class="sf_code_operator">==</span> <span class="sf_code_keyword">null</span> <span class="sf_code_operator">?</span> <span class="sf_code_string">'blue'</span> <span class="sf_code_punctuation">:</span> color<span class="sf_code_punctuation">}}</span><span class="sf_code_operator">&gt;</span>
+            <span class="sf_code_punctuation">{</span>text<span class="sf_code_punctuation">}</span>
+        <span class="sf_code_operator">&lt;/</span>p<span class="sf_code_operator">&gt;</span>
+    <span class="sf_code_punctuation">);</span>
+<span class="sf_code_punctuation">}</span></code></pre>
+                    <p><br></p>
+                    <p>That’s when it’s got tricky. We now have multiple stages:</p>
+                    <p> </p>
+                    <ul>
+                        <li> The component is created, returning an initial component tree and registering our effect.
+                        </li>
+                        <li> Our effect is run once for the creation of the component.
+                        </li>
+                        <li> Then it will run for every change to its dependency.
+                        </li>
+                    </ul>
+
+                    <p>That’s why we started with <code class='code-inline'>null</code> as the value of the <code
+                            class='code-inline'>color</code> state. The main logic is to alternate between two colors,
+                        we need a third value to detect when it’s the initial run. In the component tree, we then
+                        alleviate for this third value, as it’s not a correct value for the specifications of our
+                        component. A special note: If you return a function inside your effect, it will be executed when
+                        the component is destroyed. And if the dependencies is an empty set, the effect will be executed
+                        only once, right after the component is created, which is useful for initialization.</p>
+
+                    <p>With these two hooks, you can replicate the majority of the features that were only possible with
+                        class component. Another two hooks I find useful are useRef and useMemo.</p>
+
+                    <h1 id="Some others">Some others</h1>
+
+                    <p>useRef comes in when you want to store a value after the code of the component is executed for
+                        the next execution, but you don’t want its mutation to trigger a new execution. It acts like a
+                        global variable in respect to the component. If we take the following code:</p>
+
+                    <pre><code class='code-multiline' lang='javascript'><span class="sf_code_keyword">const</span> <span class="sf_code_function-variable">Message</span> <span class="sf_code_operator">=</span> <span class="sf_code_punctuation">({</span> text <span class="sf_code_punctuation">})</span> <span class="sf_code_operator">=&gt;</span> <span class="sf_code_punctuation">{</span>
+    <span class="sf_code_keyword">const</span> interval <span class="sf_code_operator">=</span> <span class="sf_code_function">useRef</span><span class="sf_code_punctuation">(</span><span class="sf_code_keyword">null</span><span class="sf_code_punctuation">)</span>
+    <span class="sf_code_keyword">const</span> <span class="sf_code_punctuation">[</span>color<span class="sf_code_punctuation">,</span> setColor<span class="sf_code_punctuation">]</span> <span class="sf_code_operator">=</span> <span class="sf_code_function">useState</span><span class="sf_code_punctuation">(</span><span class="sf_code_string">'blue'</span><span class="sf_code_punctuation">);</span>
+    <span class="sf_code_function">useEffect</span><span class="sf_code_punctuation">(()</span> <span class="sf_code_operator">=&gt;</span> <span class="sf_code_punctuation">{</span>
+        interval<span class="sf_code_punctuation">.</span>current <span class="sf_code_operator">=</span> <span class="sf_code_function">setInterval</span><span class="sf_code_punctuation">(()</span> <span class="sf_code_operator">=&gt;</span> <span class="sf_code_punctuation">{</span>
+            <span class="sf_code_function">setColor</span><span class="sf_code_punctuation">(</span>color <span class="sf_code_operator">===</span> <span class="sf_code_string">'blue'</span> <span class="sf_code_operator">?</span> <span class="sf_code_string">'red'</span> <span class="sf_code_punctuation">:</span> <span class="sf_code_string">'blue'</span><span class="sf_code_punctuation">)</span>
+        <span class="sf_code_punctuation">},</span> <span class="sf_code_number">1000</span><span class="sf_code_punctuation">);</span>
+      <span class="sf_code_keyword">return</span> <span class="sf_code_punctuation">()</span> <span class="sf_code_operator">=&gt;</span> <span class="sf_code_punctuation">{</span>
+          <span class="sf_code_keyword">if</span> <span class="sf_code_punctuation">(</span>interval<span class="sf_code_punctuation">.</span>current<span class="sf_code_punctuation">)</span> <span class="sf_code_function">clearInterval</span><span class="sf_code_punctuation">(</span>interval<span class="sf_code_punctuation">.</span>current<span class="sf_code_punctuation">);</span>
+      <span class="sf_code_punctuation">}</span>
+    <span class="sf_code_punctuation">},</span> <span class="sf_code_punctuation">[])</span>
+    <span class="sf_code_keyword">return</span> <span class="sf_code_punctuation">(</span>
+        <span class="sf_code_operator">&lt;</span>p style<span class="sf_code_operator">=</span><span class="sf_code_punctuation">{{</span>color<span class="sf_code_punctuation">:</span> color <span class="sf_code_operator">==</span> <span class="sf_code_keyword">null</span> <span class="sf_code_operator">?</span> <span class="sf_code_string">'blue'</span> <span class="sf_code_punctuation">:</span> color<span class="sf_code_punctuation">}}</span><span class="sf_code_operator">&gt;</span>
+            <span class="sf_code_punctuation">{</span>text<span class="sf_code_punctuation">}</span>
+        <span class="sf_code_operator">&lt;/</span>p<span class="sf_code_operator">&gt;</span>
+    <span class="sf_code_punctuation">);</span>
+<span class="sf_code_punctuation">}</span></code></pre>
+                    <p><br></p>
+                    <p>The component is now flashing between blue and red every second. When we unmount the component,
+                        we need to remove the interval to stop <code class='code-inline'>setColor</code> being called.
+                        The long-lived aspect that useRef provides is useful in that case. Notice that we don’t update
+                        the object returned by useRef, but its property <code class='code-inline'>current</code>. We
+                        removed the <code class='code-inline'>text</code> prop from the dependencies set, as our effect
+                        role is to initialize the interval. Additionally, it returns a function to be executed when the
+                        component is unmounted, clearing the interval.</p>
+
+                    <p>useMemo is for improving the performance of our code. Sometimes, we have to do computation on our
+                        state and props, resulting in a new value. If we add the code to the body of our component, it
+                        will be run each update. useMemo allows us to run the computation when the dependencies set
+                        changes and not on every render. Let’s take a look at an example:</p>
+
+                    <pre><code class='code-multiline' lang='javascript'><span class="sf_code_keyword">const</span> <span class="sf_code_function-variable">Message</span> <span class="sf_code_operator">=</span> <span class="sf_code_punctuation">({</span> text <span class="sf_code_punctuation">})</span> <span class="sf_code_operator">=&gt;</span> <span class="sf_code_punctuation">{</span>
+    <span class="sf_code_keyword">const</span> <span class="sf_code_punctuation">[</span>color<span class="sf_code_punctuation">,</span> setColor<span class="sf_code_punctuation">]</span> <span class="sf_code_operator">=</span> <span class="sf_code_function">useState</span><span class="sf_code_punctuation">(</span><span class="sf_code_keyword">null</span><span class="sf_code_punctuation">);</span>
+    <span class="sf_code_function">useEffect</span><span class="sf_code_punctuation">(()</span> <span class="sf_code_operator">=&gt;</span> <span class="sf_code_punctuation">{</span>
+        <span class="sf_code_keyword">if</span> <span class="sf_code_punctuation">(</span>color <span class="sf_code_operator">==</span> <span class="sf_code_keyword">null</span><span class="sf_code_punctuation">)</span> <span class="sf_code_function">setColor</span><span class="sf_code_punctuation">(</span><span class="sf_code_string">'blue'</span><span class="sf_code_punctuation">);</span>
+      <span class="sf_code_keyword">else</span> <span class="sf_code_function">setColor</span><span class="sf_code_punctuation">(</span>color <span class="sf_code_operator">===</span> <span class="sf_code_string">'blue'</span> <span class="sf_code_operator">?</span> <span class="sf_code_string">'red'</span> <span class="sf_code_punctuation">:</span> <span class="sf_code_string">'blue'</span><span class="sf_code_punctuation">);</span>
+    <span class="sf_code_punctuation">},</span> <span class="sf_code_punctuation">[</span>text<span class="sf_code_punctuation">])</span>
+    <span class="sf_code_keyword">const</span> bgColor <span class="sf_code_operator">=</span> <span class="sf_code_function">useMemo</span><span class="sf_code_punctuation">(()</span> <span class="sf_code_operator">=&gt;</span> <span class="sf_code_function">getInvertedColor</span><span class="sf_code_punctuation">(</span>color<span class="sf_code_punctuation">),</span> <span class="sf_code_punctuation">[</span>color<span class="sf_code_punctuation">])</span>
+    <span class="sf_code_keyword">return</span> <span class="sf_code_punctuation">(</span>
+        <span class="sf_code_operator">&lt;</span>p style<span class="sf_code_operator">=</span><span class="sf_code_punctuation">{{</span>color<span class="sf_code_punctuation">:</span> color <span class="sf_code_operator">==</span> <span class="sf_code_keyword">null</span> <span class="sf_code_operator">?</span> <span class="sf_code_string">'blue'</span> <span class="sf_code_punctuation">:</span> color<span class="sf_code_punctuation">,</span> background<span class="sf_code_punctuation">:</span> bgColor<span class="sf_code_punctuation">}}</span><span class="sf_code_operator">&gt;</span>
+            <span class="sf_code_punctuation">{</span>text<span class="sf_code_punctuation">}</span>
+        <span class="sf_code_operator">&lt;/</span>p<span class="sf_code_operator">&gt;</span>
+    <span class="sf_code_punctuation">);</span>
+<span class="sf_code_punctuation">}</span></code></pre>
+                    <p><br></p>
+                    <p><code class='code-inline'>getInvertedColor</code> is our heavy computation code. useMemo, takes a
+                        function and a dependencies array. The body of that function should be statements that we could
+                        have put inside the body of the component, and should follow the same pure paradigm — no side
+                        effect. The return value is returned directly by useMemo. The provided function executes on the
+                        mounting stage and when the dependencies are changed. But the return value will be stored —
+                        memoized — and return directly otherwise. We can mention the <code
+                            class='code-inline'>useCallback</code> hook, which memoizes a function instead. </p>
+
+                    <p>The most important part is that you can refactor the above code to create your own hook, making
+                        it possible to share functionalities between components.</p>
+
+                    <pre><code class='code-multiline' lang='javascript'><span class="sf_code_keyword">const</span> <span class="sf_code_function-variable">useColorFromText</span> <span class="sf_code_operator">=</span> <span class="sf_code_punctuation">(</span>text<span class="sf_code_punctuation">)</span> <span class="sf_code_operator">=&gt;</span> <span class="sf_code_punctuation">{</span>
+ <span class="sf_code_keyword">const</span> <span class="sf_code_punctuation">[</span>color<span class="sf_code_punctuation">,</span> setColor<span class="sf_code_punctuation">]</span> <span class="sf_code_operator">=</span> <span class="sf_code_function">useState</span><span class="sf_code_punctuation">(</span><span class="sf_code_keyword">null</span><span class="sf_code_punctuation">);</span>
+    <span class="sf_code_function">useEffect</span><span class="sf_code_punctuation">(()</span> <span class="sf_code_operator">=&gt;</span> <span class="sf_code_punctuation">{</span>
+        <span class="sf_code_keyword">if</span> <span class="sf_code_punctuation">(</span>color <span class="sf_code_operator">==</span> <span class="sf_code_keyword">null</span><span class="sf_code_punctuation">)</span> <span class="sf_code_function">setColor</span><span class="sf_code_punctuation">(</span><span class="sf_code_string">'blue'</span><span class="sf_code_punctuation">);</span>
+      <span class="sf_code_keyword">else</span> <span class="sf_code_function">setColor</span><span class="sf_code_punctuation">(</span>color <span class="sf_code_operator">===</span> <span class="sf_code_string">'blue'</span> <span class="sf_code_operator">?</span> <span class="sf_code_string">'red'</span> <span class="sf_code_punctuation">:</span> <span class="sf_code_string">'blue'</span><span class="sf_code_punctuation">);</span>
+    <span class="sf_code_punctuation">},</span> <span class="sf_code_punctuation">[</span>text<span class="sf_code_punctuation">])</span>
+    <span class="sf_code_keyword">return</span> color <span class="sf_code_operator">==</span> <span class="sf_code_keyword">null</span> <span class="sf_code_operator">?</span> <span class="sf_code_string">'blue'</span> <span class="sf_code_punctuation">:</span> color<span class="sf_code_punctuation">;</span>
+<span class="sf_code_punctuation">}</span>
+<span class="sf_code_keyword">const</span> <span class="sf_code_function-variable">Message</span> <span class="sf_code_operator">=</span> <span class="sf_code_punctuation">({</span> text <span class="sf_code_punctuation">})</span> <span class="sf_code_operator">=&gt;</span> <span class="sf_code_punctuation">{</span>
+    <span class="sf_code_keyword">const</span> color <span class="sf_code_operator">=</span> <span class="sf_code_function">useColorFromText</span><span class="sf_code_punctuation">(</span>text<span class="sf_code_punctuation">);</span>
+    <span class="sf_code_keyword">return</span> <span class="sf_code_punctuation">(</span>
+        <span class="sf_code_operator">&lt;</span>p style<span class="sf_code_operator">=</span><span class="sf_code_punctuation">{{</span>color<span class="sf_code_punctuation">:</span> color<span class="sf_code_punctuation">}}</span><span class="sf_code_operator">&gt;</span>
+            <span class="sf_code_punctuation">{</span>text<span class="sf_code_punctuation">}</span>
+        <span class="sf_code_operator">&lt;/</span>p<span class="sf_code_operator">&gt;</span>
+    <span class="sf_code_punctuation">);</span>
+<span class="sf_code_punctuation">}</span>
+</code></pre>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer class="footer">
+        <div class="container content has-text-centered">
+            <p class="has-text-weight-bold">
+                Hi! I'm Holy-Elie and this is my personal website. I share personal
+                notes about software engineering and other bits of informations that I
+                find interesting. If you like what I'm doing, you can always
+                <a href="https://www.buymeacoffee.com/hescaide">buy me a coffee</a>.
+            </p>
+            <p class="has-text-weight-bold">
+                Follow via <a href="https://twitter.com/hescaide">Twitter</a>
+                <br />
+                Or send me an email to hey[at]hescaide[dot]me
+            </p>
+            <span class="text-muted">&copy; 2022 Holy-Elie Scaide</span>
+        </div>
+    </footer>
+    <script src="../app.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet" />
+</body>
+
+</html>

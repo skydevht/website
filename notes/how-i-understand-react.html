@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <title>How I understand React</title>
+    <meta charset="utf-8" />
+    <meta name="theme-color" content="#ffffff" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="robots" content="noindex, follow" />
+    <link rel="alternate" type="application/atom+xml" href="/atom.xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/css/bulma.min.css" />
+    <link rel="stylesheet" href="../style.css" />
+</head>
+
+<body>
+    <header>
+        <nav class="navbar" role="navigation" aria-label="main navigation">
+            <div class="container">
+                <div class="navbar-brand">
+                    <a class="navbar-item is-tab" href="/"><span>Home</span></a>
+
+                    <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false"
+                        data-target="main-navbar">
+                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true"></span>
+                    </a>
+                </div>
+
+                <div id="main-navbar" class="navbar-menu">
+                    <div class="navbar-start">
+                        <a class="navbar-item is-tab" href="../portfolio.html">Portfolio</a>
+                        <a class="navbar-item is-tab is-active" href="../notes.html">Notes</a>
+                        <div class="navbar-item">
+                            <a class="button is-info is-small" href="../media/cv.pdf">View CV</a>
+                        </div>
+                    </div>
+                    <div class="navbar-end">
+                        <div class="navbar-item">
+                            <span class="has-text-weight-bold has-text-info-dark">By Holy-Elie Scaide</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <section class="hero is-info">
+        <div class="hero-body">
+            <p class="title has-text-centered">
+                How I understand React
+            </p>
+        </div>
+    </section>
+    <main class="container p-6">
+        <div class="columns">
+            <div class="column is-10 is-offset-1">
+                <div class="content">
+                    <p>Every time I learn a new language, library or framework, I like to form a mental image of how it
+                        works and why it works that way. It helps tremendously with being able to provide practical
+                        solutions to business problems if you can discern their pros and cons easily. </p>
+
+                    <p>I don't learn the technical aspects by heart. You will retain them overtime by practicing
+                        regularly with the tool. Instead, I focus on the architectural level and I try to understand how
+                        everything fits together.</p>
+
+                    <p>As for React, I think there are three major aspects that one needs to understand well to be
+                        proficient with it. They are the virtual DOM, the components and the component's lifecycle.</p>
+
+                    <h1 id="The virtual DOM">The virtual DOM</h1>
+                    <p>The DOM represents a document with a logical tree structure. Almost every UI library is
+                        represented with a tree structure because it helps with geometrical transformations and property
+                        inheritance. React's virtual DOM is a copy of that structure. Because modifying the real DOM is
+                        costly (Computing the new UI representation takes time), React executes the manipulation first
+                        on its copy, then compare the new and the old versions to determine the most performance
+                        effective way to update the real dom.</p>
+
+                    <p>That means that what you are writing and updating is not the real dom. It does not have the same
+                        properties and you should not treat it the same way. That also means that the React philosophy
+                        is also universal as the DOM in the browser is very similar in representation to the UI library
+                        in other platforms (Which explains React Native). It is still a tree structure but with new
+                        types of nodes. Here is <a
+                            href="https://programmingwithmosh.com/react/react-virtual-dom-explained/">a post</a> that
+                        explains the virtual DOM in more detail.</p>
+
+                    <h1 id="The components">The components</h1>
+                    <p>The components are each responsible for a section of the virtual DOM, which may contain other
+                        components. There are two types of components: classes, and functions. I like the latter as it's
+                        often easier to manipulate. With hooks, you can use a function instead of a class as I do now.
+                    </p>
+
+                    <p>As a developer, what you will be doing is create a tree of components that will include your owns
+                        and those provided by libraries. These components will accept props as inputs and will return
+                        the section of the tree they are responsible for. There are special components called HOC
+                        (Higher Order Components) which are functions that will return either your component with new
+                        additional props or a completely new component which will include your component as a child.</p>
+
+                    <h1 id="The component lifecycle">The component lifecycle</h1>
+                    <p>So where does the business logic fits? In the case of a class component, there are various stages
+                        and React.Component class provides you with methods that will be called at each one of the
+                        stages. You choose the correct stage based on what you want to do. Some are called only once
+                        upon the creation (mounting) and the destruction (unmounting) of your component, other will be
+                        called many times when your component updates (triggered by a lot of things). Here is a <a
+                            href="https://programmingwithmosh.com/javascript/react-lifecycle-methods/">more detailed
+                            explanation</a>.</p>
+
+                    <p>Using functions make things cleaner. There is no more lifecycle to worry about. You are provided
+                        with the props as parameters and you need to return the tree's section. That's it. Now with
+                        hooks, you can do the same thing that the class component used to do. hooks are functions that
+                        will accept arguments based on the current props and optionally will return objects that can be
+                        used inside the functions. Those objects are not created inside the function scope so they won't
+                        be destroyed when the function return. I think they get destroyed when the section of the
+                        virtual DOM your component is responsible for is destroyed.</p>
+
+                    <p>So that's it, that is my mental model of what React is. There are a lot of other things like the
+                        relation between refs and real DOM, Babel, and JSX. But I think these three are the most
+                        important concepts you need to wrap your head around.</p>
+
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer class="footer">
+        <div class="container content has-text-centered">
+            <p class="has-text-weight-bold">
+                Hi! I'm Holy-Elie and this is my personal website. I share personal
+                notes about software engineering and other bits of informations that I
+                find interesting. If you like what I'm doing, you can always
+                <a href="https://www.buymeacoffee.com/hescaide">buy me a coffee</a>.
+            </p>
+            <p class="has-text-weight-bold">
+                Follow via <a href="https://twitter.com/hescaide">Twitter</a>
+                <br />
+                Or send me an email to hey[at]hescaide[dot]me
+            </p>
+            <span class="text-muted">&copy; 2022 Holy-Elie Scaide</span>
+        </div>
+    </footer>
+    <script src="../app.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet" />
+</body>
+
+</html>

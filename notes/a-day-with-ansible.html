@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <title>A day with Ansible</title>
+    <meta charset="utf-8" />
+    <meta name="theme-color" content="#ffffff" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="robots" content="noindex, follow" />
+    <link rel="alternate" type="application/atom+xml" href="/atom.xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/css/bulma.min.css" />
+    <link rel="stylesheet" href="../style.css" />
+</head>
+
+<body>
+    <header>
+        <nav class="navbar" role="navigation" aria-label="main navigation">
+            <div class="container">
+                <div class="navbar-brand">
+                    <a class="navbar-item is-tab" href="/"><span>Home</span></a>
+
+                    <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false"
+                        data-target="main-navbar">
+                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true"></span>
+                    </a>
+                </div>
+
+                <div id="main-navbar" class="navbar-menu">
+                    <div class="navbar-start">
+                        <a class="navbar-item is-tab" href="../portfolio.html">Portfolio</a>
+                        <a class="navbar-item is-tab is-active" href="../notes.html">Notes</a>
+                        <div class="navbar-item">
+                            <a class="button is-info is-small" href="../media/cv.pdf">View CV</a>
+                        </div>
+                    </div>
+                    <div class="navbar-end">
+                        <div class="navbar-item">
+                            <span class="has-text-weight-bold has-text-info-dark">By Holy-Elie Scaide</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <section class="hero is-info">
+        <div class="hero-body">
+            <p class="title has-text-centered">
+                A day with Ansible
+            </p>
+        </div>
+    </section>
+    <main class="container p-6">
+        <div class="columns">
+            <div class="column is-10 is-offset-1">
+                <div class="content">
+                    <p>While my work has been focused on frontend, I had to interact with backend systems on a few
+                        projects where I was either the most knowledgeable person on the team or working alone. In these
+                        cases, my usual solution was either serverless (Firebase Functions, AWS Lambda) or write an API
+                        using Node with Express and Laravel and hosting it with Heroku. I like the container paradigm of
+                        Heroku, starting fresh at every deployment and everything happens automatically upon pushing the
+                        changes.</p>
+
+                    <p>But costs with Heroku ramp up quickly when scaling. I'm working on a side project and I decided
+                        to explore less expensive options, settling on a VPS at the end. I then quickly set it up one
+                        and my project was online.</p>
+
+                    <p>I found that I'm not comfortable with manual operations, when there is a non-zero chance that I
+                        will have to redo them in the future. Which, I assume, will be in a more stressful situation. I
+                        looked into automation tools and I found <a href="https://www.chef.io/">Chef</a>, <a
+                            href="https://www.ansible.com/">Ansible</a>, and <a href="https://puppet.com/">Puppet</a>
+                        among others. I settled on Ansible due to being less complex to get started with.</p>
+
+                    <h1 id="So, Ansible?">So, Ansible?</h1>
+                    <p>Installing Ansible was straightforward on both my M1 MBA and my Linux box. I needed something to
+                        test it with, so I used my Linux server as my learning environment because Vagrant (with
+                        VirtualBox) does not support M1 processors. A quick <b>Vagrantfile</b> later, and my virtual
+                        machine was ready.</p>
+
+                    <p>As I learned more quickly by doing, I cloned a project that was doing the same thing I was aiming
+                        for, creating a deployment environment for Laravel. The project was last updated in 2018, so I
+                        figured there will be ample stuff to update in it.</p>
+
+                    <p>The first thing I learned was “Inventory”. Inventory files lists all the hosts that you need to
+                        interact with, alongside their connection parameters. You can assign a name to them and group
+                        them. When using that inventory files, you can filter the particular hosts you want by using a
+                        pattern. When using Ansible to provision the virtual machine(s) created by vagrant, the latter
+                        will generate an inventory files that will automatically be used when provisioning.</p>
+
+                    <p>The second thing I learned was “Roles”. Roles are collections of tasks and other related things
+                        (Variables, Templates, …) inside a common directory, which can later be shared if needed. Tasks
+                        are action items that will be executed against the hosts. I had one single host that has
+                        everything, but if you wanted a more modular architecture, you could have roles for the web
+                        servers, the database servers, the storage servers, including a shared role that contains the
+                        common tasks.</p>
+
+                    <p>The third thing I learned was “Playbooks”. Playbooks are instruction manuals describing policies
+                        or executing a particular set of tasks. Inside the project I was using as a reference, there
+                        were playbooks for each particular server type, which included the <code
+                            class='code-inline'>common</code> role and the role for that particular server and targeted
+                        a specific set of hosts inside the inventory. There was another playbook that included the
+                        others that could be used to provision a whole site.</p>
+
+                    <h1 id="In the end">In the end</h1>
+                    <p>I've written a few bash and python scripts before. But, I was amazed by the possibilities that
+                        Ansible offered. My first use case was writing a playbook that will update my web application
+                        using git and install the new dependencies using composer when needed (which I used a lot as I'm
+                        actively developing it). There are numerous modules built by the community that will make the
+                        process a breeze (the above playbook only has two tasks). The documentation aspect alone is
+                        worth it when in a team context.</p>
+
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer class="footer">
+        <div class="container content has-text-centered">
+            <p class="has-text-weight-bold">
+                Hi! I'm Holy-Elie and this is my personal website. I share personal
+                notes about software engineering and other bits of informations that I
+                find interesting. If you like what I'm doing, you can always
+                <a href="https://www.buymeacoffee.com/hescaide">buy me a coffee</a>.
+            </p>
+            <p class="has-text-weight-bold">
+                Follow via <a href="https://twitter.com/hescaide">Twitter</a>
+                <br />
+                Or send me an email to hey[at]hescaide[dot]me
+            </p>
+            <span class="text-muted">&copy; 2022 Holy-Elie Scaide</span>
+        </div>
+    </footer>
+    <script src="../app.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet" />
+</body>
+
+</html>
