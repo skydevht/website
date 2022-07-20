@@ -2,98 +2,76 @@
 <html>
 
 <head lang="en">
-    <title>Notes</title>
+    <title>Hi, I’m Holy-Elie Scaide</title>
     <meta charset="utf-8" />
     <meta name="theme-color" content="#ffffff" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="robots" content="noindex, follow" />
-    <link rel="alternate" type="application/atom+xml" href="/atom.xml" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/css/bulma.min.css" />
+    <link rel="stylesheet" href="https://unpkg.com/chota@latest">
     <link rel="stylesheet" href="./style.css" />
 </head>
 
 <body>
     <header>
-        <nav class="navbar" role="navigation" aria-label="main navigation">
+        <nav class="nav" role="navigation" aria-label="main navigation">
             <div class="container">
-                <div class="navbar-brand">
-                    <a class="navbar-item is-tab" href="/"><span>Home</span></a>
-
-                    <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false"
-                        data-target="main-navbar">
-                        <span aria-hidden="true"></span>
-                        <span aria-hidden="true"></span>
-                        <span aria-hidden="true"></span>
-                    </a>
+                <div class="nav-left is-vertical-align">
+                    <div class="tabs">
+                        <a ref="/">Home</a>
+                        <a href="/portfolio.html">Portfolio</a>
+                        <a class="active" href="/notes.html">Notes</a>
+                    </div>
+                    <a class="button outline" href="/media/cv.pdf">View CV</a>
                 </div>
-
-                <div id="main-navbar" class="navbar-menu">
-                    <div class="navbar-start">
-                        <a class="navbar-item is-tab" href="./portfolio.html">Portfolio</a>
-                        <a class="navbar-item is-tab is-active" href="./notes.html">Notes</a>
-                        <div class="navbar-item">
-                            <a class="button is-info is-small" href="./media/cv.pdf">View CV</a>
-                        </div>
-                    </div>
-                    <div class="navbar-end">
-                        <div class="navbar-item">
-                            <span class="has-text-weight-bold has-text-info-dark">By Holy-Elie Scaide</span>
-                        </div>
-                    </div>
+                <div class="nav-right is-vertical-align">
+                    <span id="author">By Holy-Elie Scaide</span>
                 </div>
             </div>
         </nav>
     </header>
-    <section class="hero is-info">
-        <div class="hero-body">
-            <p class="title has-text-centered">
+    <section class="hero text-center">
+            <p class="title">
                 Notes
             </p>
-        </div>
     </section>
     <main class="container p-6">
-        <div class="columns">
-            <div class="column is-10 is-offset-1">
-                <div class="content">
-                    <p>Below are all my notes in no particular order.</p>
+        <p>Below are all my notes in no particular order.</p>
 
-                    <h2>Workflow</h2>
-                    <p><a href="./notes/apps-I-use-daily.html">
-                            Apps I use daily</a></p>
+        <h1>Workflow</h1>
+        <ul>
+            <li><a href="/notes/apps-I-use-daily.html">
+            Apps I use daily</a></li>
+        </ul>
 
-                    <h2 id="Programming">React</h2>
-                    <p><a href="./notes/the-usage-of-react-hooks.html">
-                            The usage of React Hooks</a></p>
-                    <p><a href="./notes/writing-native-modules.html">
-                            Writing Native Modules</a></p>
-                    <p><a href="./notes/my-react-native-template.html">
-                            My React Native template</a></p>
-                    <p><a href="./notes/how-i-understand-react.html">
-                            How I understand React</a></p>
+        <h1 id="Programming">React</h1>
+        <ul>
+            <li><a href="/notes/the-usage-of-react-hooks.html">The usage of React Hooks</a></li>
+            <li><a href="/notes/writing-native-modules.html">Writing Native Modules</a></li>
+            <li><a href="/notes/my-react-native-template.html">My React Native template</a></li>
+            <li><a href="/notes/how-i-understand-react.html">How I understand React</a></li>
+        </ul>
 
-                    <h2 id="DevOps">DevOps</h2>
-                    <p><a href="./notes/a-day-with-ansible.html">
-                            A day with Ansible</a></p>
-                </div>
-            </div>
-        </div>
+        <h1 id="DevOps">DevOps</h1>
+        <ul>
+            <li><a href="/notes/a-day-with-ansible.html">A day with Ansible</a></li>
+        </ul>
     </main>
-    <footer class="footer">
-        <div class="container content has-text-centered">
-            <p class="has-text-weight-bold">
+    <footer class="footer text-center">
+        <div class="container">
+
+            <p>
                 Hi! I'm Holy-Elie and this is my personal website. I share personal
                 notes about software engineering and other bits of informations that I
                 find interesting. If you like what I'm doing, you can always
                 <a href="https://www.buymeacoffee.com/hescaide">buy me a coffee</a>.
             </p>
-            <p class="has-text-weight-bold">
+            <p>
                 Follow via <a href="https://twitter.com/hescaide">Twitter</a>
                 <br />
                 Or send me an email to hey[at]hescaide[dot]me
             </p>
-            <span class="text-muted">&copy; 2022 Holy-Elie Scaide</span>
+            <span>&copy; 2022 Holy-Elie Scaide</span>
         </div>
     </footer>
     <script src="./app.js"></script>

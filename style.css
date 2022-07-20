@@ -1,7 +1,28 @@
-html {
-  font-size: 18px;
-}
 
 .fonts-loaded body {
   font-family: Nunito, Helvetica, sans-serif;
+}
+
+footer {
+  background: #fafafa;
+  padding: 4rem;
+}
+
+.hero {
+  padding: 3rem;
+}
+
+.hero .title {
+  margin: 0;
+  font-size: 4rem;
+  font-weight: 900;
+  color: #303030;
+}
+
+#author {
+ font-weight: bold;
+}
+
+#me {
+  max-width: 600px;
 }
