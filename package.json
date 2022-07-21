@@ -5,6 +5,9 @@
   "repository": "git@github.com:skydevht/website.git",
   "author": "Holy-Elie Scaide <hash@hescaide.me>",
   "license": "MIT",
+  "scripts": {
+    "build": "gulp"
+  },
   "devDependencies": {
     "gulp": "^4.0.2",
     "gulp-markdown-to-json": "^1.1.0",
