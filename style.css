@@ -26,3 +26,7 @@ footer {
 #me {
   max-width: 600px;
 }
+
+.card.draft {
+  margin-bottom: 1rem;
+}
