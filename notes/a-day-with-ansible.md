@@ -26,4 +26,3 @@ The third thing I learned was “**Playbooks**”. **Playbooks** are instruction
 # In the end
 
 I've written a few bash and python scripts before. But, I was amazed by the possibilities that Ansible offered. My first use case was writing a playbook that will update my web application using git and install the new dependencies using composer when needed (which I used a lot as I'm actively developing it). There are numerous modules built by the community that will make the process a breeze (the above playbook only has two tasks). The documentation aspect alone is worth it when in a team context.
-
