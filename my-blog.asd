@@ -6,7 +6,7 @@
                "access"
                "cl-yaml")
   :license "MIT"
-  :components ((:file "build" :depends-on ("parse-front-matter"))
+  :components ((:file "generate" :depends-on ("parse-front-matter"))
                (:file "parse-front-matter")))
 
 ; vim: ft=lisp
