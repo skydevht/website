@@ -14,7 +14,7 @@ What are hooks? Hooks are functions. And like all functions, you provide them wi
 Let's start with the basic: the function component. It accepts props as parameters and return a component tree. You can take the following as an example.
 
 ```javascript
-const Message = (props) => {
+const Message = (props) => t
   return <p>{props.text}</p>
 }
 ```

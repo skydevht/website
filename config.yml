@@ -1,0 +1,20 @@
+templates: "templates/"
+build:
+  directory: "dist/"
+static-files:
+  - src: "app.js"
+    dest: "app.js"
+  - src: "style.css"
+    dest: "style.css"
+  - src: "media/cv.pdf"
+    dest: "media/cv.pdf"
+content-types:
+  - name: "notes"
+    src: "notes"
+    single:
+      template: "note.html"
+      destination: "notes/"
+    list:
+      template: "notes.html"
+      destination: "./"
+
