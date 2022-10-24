@@ -1,23 +1,22 @@
+<!DOCTYPE html>
 <html>
   <head lang="en">
     <title>Hi, I&rsquo;m Holy-Elie Scaide</title>
     <meta charset="utf-8" />
     <meta name="theme-color" content="#ffffff" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
-    <link rel="stylesheet" href="https://unpkg.com/chota@latest" />
     <link rel="stylesheet" href="/style.css" />
   </head>
 
   <body>
-    {% include "layout/header.html" %}
-    <main class="container p-6">
-      {% block contents %}
-      {% endblock %}
+      <main class="container p-6">
+	  {% include "layout/header.html" %}
+	  <article>
+	      {% block contents %}
+	      {% endblock %}
+	      {% include "layout/footer.html" %}
+	  </article>
     </main>
-    {% include "layout/footer.html" %}
-    <script src="./app.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&amp;display=swap" rel="stylesheet" />
+
   </body>
 </html>

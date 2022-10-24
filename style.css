@@ -1,22 +1,195 @@
-
-.fonts-loaded body {
-  font-family: Nunito, Helvetica, sans-serif;
+@font-face {
+    font-family: Charter;
+    font-style: normal;
+    font-weight: normal;
+    font-stretch: normal;
+    src: url('fonts/charter_regular.woff2') format('woff2');
 }
 
+@font-face {
+    font-family: Charter;
+    font-style: normal;
+    font-weight: bold;
+    font-stretch: normal;
+    src: url('fonts/charter_bold.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: Charter;
+    font-style: normal;
+    font-weight: normal;
+    font-stretch: normal;
+    src: url('fonts/Charter Regular.otf') format('opentype');
+}
+
+@font-face {
+    font-family: Charter;
+    font-style: normal;
+    font-weight: bold;
+    font-stretch: normal;
+    src: url('fonts/Charter Bold.otf') format('opentype');
+}
+
+@font-face {
+    font-family: "Fira Mono";
+    font-style: normal;
+    font-weight: normal;
+    font-stretch: normal;
+    src: url('fonts/FiraMono-Regular.woff') format('woff');
+}
+
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    line-height: 1.8;;
+    vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+body {
+    line-height: 1.8;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+html {
+    font-size: 24px;
+}
+
+body {
+    position: relative;
+    font-family: Charter;
+    padding-top: 3.2875rem;
+    line-height: 1.8rem;
+    max-width: 1000px;
+    color: #111;
+    margin: 0 auto;
+}
+
+header {
+    position: absolute;
+    box-sizing: border-box;
+    flex-basis: auto;
+}
+
+header nav {
+    display: flex;
+    flex-flow: column;
+}
+
+header nav a {
+    display: block;
+    box-sizing: border-box;
+    font-size: 1.15rem;
+    color: #bbb;
+    font-weight: bold;
+    text-decoration: none;
+    line-height: 1;
+    padding: 0.56em 0.3em;
+}
+
+header nav a:hover {
+    color: #333
+}
+
+
+main {
+    display: flex;
+    flex-flow: column;
+}
+
+article {
+    padding-left: 200px;;
+
+}
+
+strong {
+    font-weight: bold;
+    opacity: 0.70
+}
+
+code {
+    font-family: "Fira Mono";
+    border: 1px solid;
+}
+
+
 footer {
-  background: #fafafa;
-  padding: 4rem;
+    margin-top: 3.3rem;
+    display: block;
+    padding-top: 1.4rem;
+    padding-bottom: 1.4rem;
+    border-top: 2px solid;
+    text-align: center;
+    font-size: 0.86rem;
+}
+
+h1 {
+    font-size: 1.875rem;
+    font-weight: bold;
+    margin-top: 2.5rem;
+    margin-bottom: 1.3125rem;
+}
+
+p {
+    margin-bottom: 1.1875rem;
+}
+
+a {
+    transition: background-color 250ms;
+    color: inherit;
+    font-weight: bold;
+    opacity: 0.70;
+    text-decoration: none;
+
+}
+
+a:hover {
+    background-color: #ddf7d7;
 }
 
 .hero {
-  padding: 3rem;
+    margin-bottom: 2.75rem;
 }
 
 .hero .title {
   margin: 0;
-  font-size: 4rem;
-  font-weight: 900;
-  color: #303030;
+  font-size: 2.75rem;
+  font-weight: bold;
+  text-align: center;
 }
 
 #author {
@@ -29,4 +202,8 @@ footer {
 
 .card.draft {
   margin-bottom: 1rem;
+}
+
+.copyright {
+    opacity: 0.5;
 }
