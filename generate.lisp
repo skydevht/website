@@ -16,13 +16,13 @@
 ;;;;;;;;;;;;
 
 (deftag my-header (control attrs)
-    `(:header
+    `(:header#sidebar
 	 (:nav :role "navigation"
 	       :aria-label "main-navigation"
 	  (:a :href "/" "about me")
-	  (:a :href "/portfolio.html" "portfolio")
+	  (:a :href "/now.html" "now")
 	  (:a :href "/notes.html" "notes")
-	  (:a :href "/media/cv.pdf" "resume"))))
+	  (:a :href "/media/cv.pdf" "résumé"))))
 
 (defparameter *footer-content*
   (with-open-file (in (merge-pathnames "templates/footer.html" *src-directory*))
@@ -77,6 +77,16 @@
 (defun portfolio-page ()
   (with-page (:title "Portfolio")
     (:raw *portfolio-content*)))
+
+(defparameter *now-content*
+  (let ((content (with-open-file (in (merge-pathnames "pages/now.md" *src-directory*))
+		   (uiop:read-file-string in))))
+    (with-output-to-string (s)
+      (3bmd:parse-string-and-print-to-stream content s))))
+
+(defun now-page ()
+  (with-page (:title "My Now page")
+    (:raw *now-content*)))
 
 ;;;;;;;;;;
 ;; NOTE ;;
@@ -153,7 +163,8 @@
 
 (defparameter *pages*
   '(("index.html" index-page)
-    ("portfolio.html" portfolio-page)))
+    ("portfolio.html" portfolio-page)
+    ("now.html" now-page)))
 
 (defun generate-site ()
   (ensure-directories-exist *dest-directory*)
