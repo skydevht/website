@@ -112,6 +112,7 @@
     "fonts/Charter Regular.otf"
     "fonts/FiraMono-Regular.woff"
     "media/cv.pdf"
+    "media/me.jpg"
     "style.css"
     "app.js"))
 
