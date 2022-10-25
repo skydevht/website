@@ -197,7 +197,12 @@ a:hover {
 }
 
 #me {
-  max-width: 600px;
+    display: flex;
+    justify-content: center;
+}
+
+#me img {
+    max-width: 600px;
 }
 
 .card.draft {
