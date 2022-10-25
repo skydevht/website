@@ -11,6 +11,10 @@
 
 (defparameter *dest-directory* (merge-pathnames "dist/" *src-directory*))
 
+;;;;;;;;;;;;
+;; LAYOUT ;;
+;;;;;;;;;;;;
+
 (deftag my-header (control attrs)
     `(:header
 	 (:nav :role "navigation"
@@ -52,6 +56,11 @@
      (page-header ,title)
      ,@body))
 
+
+;;;;;;;;;;;;;;;;;;;;;
+;; PAGE GENERATORS ;;
+;;;;;;;;;;;;;;;;;;;;;
+
 (defparameter *index-content*
   (with-open-file (in (merge-pathnames "templates/index.html" *src-directory*))
     (uiop:read-file-string in)))
@@ -68,6 +77,10 @@
 (defun portfolio-page ()
   (with-page (:title "Portfolio")
     (:raw *portfolio-content*)))
+
+;;;;;;;;;;
+;; NOTE ;;
+;;;;;;;;;;
 
 (defstruct note
   title
@@ -107,6 +120,10 @@
 			      :dest-file (merge-pathnames base-path *dest-directory*)
 			      :content content)))))))
 
+;;;;;;;;;;;;;;;;;;
+;; STATIC FILES ;;
+;;;;;;;;;;;;;;;;;;
+
 (defparameter *static-files*
   '("fonts/Charter Bold.otf"
     "fonts/Charter Regular.otf"
@@ -122,6 +139,10 @@
 	  (dest (merge-pathnames file *dest-directory*)))
       (ensure-directories-exist dest)
       (uiop:copy-file src dest))))
+
+;;;;;;;;;;;;;
+;; WRITERS ;;
+;;;;;;;;;;;;;
 
 (defmacro write-page (dest &body body)
   `(with-open-file (*html* ,dest
