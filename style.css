@@ -3,7 +3,9 @@
     font-style: normal;
     font-weight: normal;
     font-stretch: normal;
-    src: url('fonts/charter_regular.woff2') format('woff2');
+    src: url('fonts/Charter Regular.woff2') format('woff2'),
+        url('fonts/Charter Regular.otf') format('opentype'),    
+        url('fonts/Charter Regular.ttf') format('truetype');
 }
 
 @font-face {
@@ -11,23 +13,9 @@
     font-style: normal;
     font-weight: bold;
     font-stretch: normal;
-    src: url('fonts/charter_bold.woff2') format('woff2');
-}
-
-@font-face {
-    font-family: Charter;
-    font-style: normal;
-    font-weight: normal;
-    font-stretch: normal;
-    src: url('fonts/Charter Regular.otf') format('opentype');
-}
-
-@font-face {
-    font-family: Charter;
-    font-style: normal;
-    font-weight: bold;
-    font-stretch: normal;
-    src: url('fonts/Charter Bold.otf') format('opentype');
+    src: url('fonts/Charter Bold.woff2') format('woff2'),
+        url('fonts/Charter Bold.otf') format('opentype'),
+        url('fonts/Charter\ Bold.ttf') format('truetype');
 }
 
 @font-face {
@@ -35,7 +23,10 @@
     font-style: normal;
     font-weight: normal;
     font-stretch: normal;
-    src: url('fonts/FiraMono-Regular.woff') format('woff');
+    src: url('fonts/FiraMono-Regular.woff2') format('woff2'),
+        url('fonts/FiraMono-Regular.woff') format('woff'),
+        url('fonts/FiraMono-Regular.otf') format('opentype'),
+        url('fonts/FiraMono-Regular.ttf') format('truetype');
 }
 
 

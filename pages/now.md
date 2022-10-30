@@ -2,11 +2,11 @@
 
 ## Reading
 
-I'm going through “Peopleware” by Timothy Lister and Tom DeMarco. The previous book before that was  “Practices of an Agile Developer” by Venkat Subramaniam and Andy Hunt.
+I'm going through “Peopleware” by Timothy Lister and Tom DeMarco. Before that, it  was  “Practices of an Agile Developer” by Venkat Subramaniam and Andy Hunt.
 
 ## Learning
 
-Learning 2 foreign languages at the same time: Spanish and German. The first is for travel, while the second is purely for the challenge.
+I'm learning 2 foreign languages at the same time: Spanish and German. The first is for travel, while the second is purely for the challenge.
 
 My interest in Computer Science, Mathematics, and Physics has renewed. I've started working through “Introduction to the Theory of Computation” by Michael Sipser and “Types and Programming Languages” by Benjamin C. Pierce. For Mathematics, I plan to start with James Stewart's “Calculus” and “Linear Algebra” by Gilbert Strang.
 

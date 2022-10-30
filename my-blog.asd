@@ -6,7 +6,6 @@
 	       "spinneret"
 	       "cl-yaml")
   :license "MIT"
-  :components ((:file "generate" :depends-on ("parse-front-matter"))
-	       (:file "parse-front-matter")))
+  :components ((:file "generate")))
 
 ; vim: ft=lisp

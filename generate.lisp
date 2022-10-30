@@ -2,7 +2,6 @@
 
 (defpackage :my-blog
   (:use cl iterate spinneret)
-  (:import-from :my-blog.parse-front-matter :parse)
   (:export :generate-site))
 
 (in-package :my-blog)
@@ -10,6 +9,17 @@
 (defparameter *src-directory* (uiop/os:getcwd))
 
 (defparameter *dest-directory* (merge-pathnames "dist/" *src-directory*))
+
+(defparameter +front-matter-regex+
+  (ppcre:create-scanner "---[\\n\\r](.*)[\\n\\r]---[\\n\\r]" :single-line-mode t))
+
+(defun parse (string)
+  "Parses front matter from a string, returning two values: the text of the front matter and the file's content."
+  (multiple-value-bind (start end)
+      (ppcre:scan +front-matter-regex+ string)
+    (values (subseq string (+ 4 start) (- end 5))
+	    (subseq string (1+ end)))))
+
 
 ;;;;;;;;;;;;
 ;; LAYOUT ;;
@@ -29,7 +39,8 @@
     (uiop:read-file-string in)))
 
 (deftag my-footer (control attrs)
-  `(:footer ,@control))
+  `(:footer
+    (:raw *footer-content*)))
 
 (defmacro with-master (&body body)
   `(with-html
@@ -45,7 +56,7 @@
 	(my-header)
 	(:article
 	 ,@body
-	 (my-footer (:raw ,*footer-content*))))))))
+	 (my-footer)))))))
 
 (deftag page-header (control attrs)
   `(:section.hero
@@ -61,32 +72,24 @@
 ;; PAGE GENERATORS ;;
 ;;;;;;;;;;;;;;;;;;;;;
 
-(defparameter *index-content*
-  (with-open-file (in (merge-pathnames "templates/index.html" *src-directory*))
-    (uiop:read-file-string in)))
 
-(defun index-page ()
-  (with-master ()
-     (:raw *index-content*)
-    ))
-
-(defparameter *portfolio-content*
-  (with-open-file (in (merge-pathnames "templates/portfolio.html" *src-directory*))
-		  (uiop:read-file-string in)))
-
-(defun portfolio-page ()
-  (with-page (:title "Portfolio")
-    (:raw *portfolio-content*)))
-
-(defparameter *now-content*
-  (let ((content (with-open-file (in (merge-pathnames "pages/now.md" *src-directory*))
-		   (uiop:read-file-string in))))
+(defun read-md-as-html (path)
+  (let ((content (with-open-file (file (merge-pathnames path *src-directory*))
+				 (uiop:read-file-string file))))
     (with-output-to-string (s)
       (3bmd:parse-string-and-print-to-stream content s))))
 
+(defun index-page ()
+  (with-master ()
+     (:raw (read-md-as-html "pages/index.md"))))
+
+(defun portfolio-page ()
+  (with-page (:title "Portfolio")
+    (:raw (read-md-as-html "pages/portfolio.md"))))
+
 (defun now-page ()
-  (with-page (:title "My Now page")
-    (:raw *now-content*)))
+  (with-page (:title "My Now Page")
+    (:raw (read-md-as-html "pages/now.md"))))
 
 ;;;;;;;;;;
 ;; NOTE ;;
@@ -136,8 +139,15 @@
 
 (defparameter *static-files*
   '("fonts/Charter Bold.otf"
+    "fonts/Charter Bold.ttf"
+    "fonts/Charter Bold.woff2"
     "fonts/Charter Regular.otf"
+    "fonts/Charter Regular.ttf"
+    "fonts/Charter Regular.woff2"
+    "fonts/FiraMono-Regular.otf"
+    "fonts/FiraMono-Regular.ttf"
     "fonts/FiraMono-Regular.woff"
+    "fonts/FiraMono-Regular.woff2"
     "media/cv.pdf"
     "media/me.jpg"
     "style.css"
