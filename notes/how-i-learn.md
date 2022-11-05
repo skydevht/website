@@ -1,8 +1,8 @@
 ---
 title: How I learn
 tags: #life, #learning, #systems
-created_on: 2022-08-26
-updated_on: 2022-08-28
+created: 2022-08-26
+updated: 2022-08-28
 ---
 
 # Learning is understanding and visualizing models

@@ -1,8 +1,8 @@
 ---
 title: Apps I use daily
 tags: #productivity
-created_on: 2022-05-02
-updated_on: 2022-07-19
+created: 2022-05-02
+updated: 2022-07-19
 ---
 
 # Programming

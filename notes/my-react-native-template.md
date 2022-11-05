@@ -1,8 +1,8 @@
 ---
 title: My React Native template
 tags: #react-native, #javascript, #programming
-created_on: 2022-05-02
-updated_on: 2022-07-21
+created: 2022-05-02
+updated: 2022-07-21
 ---
 
 I've been working with React Native for a while now. The projects have been applications mainly for small businesses and entrepreneurs as a freelancer during this time. After a few of these, I find myself using the same architecture again and again.

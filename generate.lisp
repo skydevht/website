@@ -10,6 +10,9 @@
 
 (defparameter *dest-directory* (merge-pathnames "dist/" *src-directory*))
 
+(defparameter 3bmd-code-blocks:*code-blocks* t)
+(defparameter 3bmd-code-blocks:*renderer* :nohighlight)
+
 (defparameter +front-matter-regex+
   (ppcre:create-scanner "---[\\n\\r](.*)[\\n\\r]---[\\n\\r]" :single-line-mode t))
 
@@ -18,7 +21,7 @@
   (multiple-value-bind (start end)
       (ppcre:scan +front-matter-regex+ string)
     (values (subseq string (+ 4 start) (- end 5))
-	    (subseq string (1+ end)))))
+            (subseq string (1+ end)))))
 
 
 ;;;;;;;;;;;;
@@ -26,13 +29,13 @@
 ;;;;;;;;;;;;
 
 (deftag my-header (control attrs)
-    `(:header#sidebar
-	 (:nav :role "navigation"
-	       :aria-label "main-navigation"
-	  (:a :href "/" "about me")
-	  (:a :href "/now.html" "now")
-	  (:a :href "/notes.html" "notes")
-	  (:a :href "/media/cv.pdf" "résumé"))))
+  `(:header#sidebar
+    (:nav :role "navigation"
+     :aria-label "main-navigation"
+     (:a :href "/" "about me")
+     (:a :href "/now.html" "now")
+     (:a :href "/notes.html" "notes")
+     (:a :href "/media/cv.pdf" "résumé"))))
 
 (defparameter *footer-content*
   (with-open-file (in (merge-pathnames "templates/footer.html" *src-directory*))
@@ -49,14 +52,14 @@
       (:head
        (:title "Hi, I'm Holy-Elie Scaide")
        (:meta :name "viewport"
-	      :content "width=device-width, initial-scale=1, shrink-to-fit=no")
+        :content "width=device-width, initial-scale=1, shrink-to-fit=no")
        (:link :rel "stylesheet" :href "/style.css"))
       (:body
        (:main
-	(my-header)
-	(:article
-	 ,@body
-	 (my-footer)))))))
+        (my-header)
+        (:article
+         ,@body
+         (my-footer)))))))
 
 (deftag page-header (control attrs)
   `(:section.hero
@@ -75,13 +78,13 @@
 
 (defun read-md-as-html (path)
   (let ((content (with-open-file (file (merge-pathnames path *src-directory*))
-				 (uiop:read-file-string file))))
+                   (uiop:read-file-string file))))
     (with-output-to-string (s)
       (3bmd:parse-string-and-print-to-stream content s))))
 
 (defun index-page ()
   (with-master ()
-     (:raw (read-md-as-html "pages/index.md"))))
+    (:raw (read-md-as-html "pages/index.md"))))
 
 (defun portfolio-page ()
   (with-page (:title "Portfolio")
@@ -97,6 +100,8 @@
 
 (defstruct note
   title
+  created
+  updated
   dest-file
   content
   link)
@@ -105,8 +110,8 @@
   (with-page (:title "Notes")
     (:p "Below are all my notes in no particular order.")
     (:ul (dolist (note notes)
-	   (:li
-	    (:a :href (note-link note) (note-title note)))))))
+           (:li
+            (:a :href (note-link note) (note-title note)))))))
 
 (defun note-page (note)
   (with-page (:title (note-title note))
@@ -122,16 +127,18 @@
 (defun find-notes ()
   (let ((note-files (uiop:directory-files (merge-pathnames "notes/" *src-directory*))))
     (iter (for note-file in note-files)
-      (collect (multiple-value-bind (fm-data markdown)
-		   (parse (uiop:read-file-string note-file))
-		 (let ((content (with-output-to-string (s)
-				  (3bmd:parse-string-and-print-to-stream markdown s)))
-		       (frontmatter (yaml:parse fm-data))
-		       (base-path (get-note-dest-base note-file)))
-		   (make-note :title (gethash "title" frontmatter "")
-			      :link (get-note-link base-path)
-			      :dest-file (merge-pathnames base-path *dest-directory*)
-			      :content content)))))))
+          (collect (multiple-value-bind (fm-data markdown)
+                       (parse (uiop:read-file-string note-file))
+                     (let ((content (with-output-to-string (s)
+                                      (3bmd:parse-string-and-print-to-stream markdown s)))
+                           (frontmatter (yaml:parse fm-data))
+                           (base-path (get-note-dest-base note-file)))
+                       (make-note :title (gethash "title" frontmatter "")
+                                  :created (local-time:parse-timestring (gethash "created" frontmatter))
+                                  :updated (local-time:parse-timestring (gethash "updated" frontmatter))
+                                  :link (get-note-link base-path)
+                                  :dest-file (merge-pathnames base-path *dest-directory*)
+                                  :content content)))))))
 
 ;;;;;;;;;;;;;;;;;;
 ;; STATIC FILES ;;
@@ -156,7 +163,7 @@
 (defun copy-files ()
   (dolist (file *static-files*)
     (let ((src (merge-pathnames file *src-directory*))
-	  (dest (merge-pathnames file *dest-directory*)))
+          (dest (merge-pathnames file *dest-directory*)))
       (ensure-directories-exist dest)
       (uiop:copy-file src dest))))
 
@@ -166,9 +173,9 @@
 
 (defmacro write-page (dest &body body)
   `(with-open-file (*html* ,dest
-			:direction :output
-			:if-exists :supersede
-			:if-does-not-exist :create)
+                           :direction :output
+                           :if-exists :supersede
+                           :if-does-not-exist :create)
      ,@body))
 
 (defparameter *pages*
@@ -180,12 +187,14 @@
   (ensure-directories-exist *dest-directory*)
   (dolist (p *pages*)
     (write-page (merge-pathnames (first p) *dest-directory*)
-      (apply (second p) nil)))
-  (let ((notes (find-notes)))
+                (apply (second p) nil)))
+  (let ((notes (sort (find-notes)
+                     #'local-time:timestamp>
+                     :key (lambda (note) (note-updated note)))))
     (write-page (merge-pathnames "notes.html" *dest-directory*)
-      (notes-page notes))
+                (notes-page notes))
     (dolist (note notes)
       (ensure-directories-exist (note-dest-file note))
       (write-page (note-dest-file note)
-	(note-page note))))
+                  (note-page note))))
   (copy-files))

@@ -1,8 +1,8 @@
 ---
 title: A day with Ansible
 tags: #devops, #ansible
-created_on: 2022-05-02
-updated_on: 2022-07-19
+created: 2022-05-02
+updated: 2022-07-19
 ---
 
 Even with being a frontend developer, I had to interact with backend systems. On those few projects. I was either the most knowledgeable person on the team or working alone. My usual solution was either serverless (Firebase Functions, AWS Lambda) or write an API using Node with Express and Laravel and hosting it with Heroku. I like the container paradigm of Heroku, starting fresh at every deployment and triggered automatically by `git push`.

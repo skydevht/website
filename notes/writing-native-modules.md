@@ -1,6 +1,8 @@
 ---
 title: Writing Native Modules
-tags: #programming, #react, #ionic
+tags: #programming, #react_native, #ionic
+created: 2022-01-07
+updated: 2022-07-04
 ---
 
 One of the milestones of being a React Native developer is writing your first native module. At first, it may appear a daunting task, but the module part is easy to wrap your head around. Here are a few important points to keep in mind. The same applies to Cordova.

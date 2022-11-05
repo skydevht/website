@@ -4,7 +4,7 @@
     font-weight: normal;
     font-stretch: normal;
     src: url('fonts/Charter Regular.woff2') format('woff2'),
-        url('fonts/Charter Regular.otf') format('opentype'),    
+        url('fonts/Charter Regular.otf') format('opentype'),
         url('fonts/Charter Regular.ttf') format('truetype');
 }
 
@@ -60,20 +60,20 @@ body {
     line-height: 1.8;
 }
 ol, ul {
-	list-style: none;
+    list-style: none;
 }
 blockquote, q {
-	quotes: none;
+    quotes: none;
 }
 
 blockquote:before, blockquote:after,
 q:before, q:after {
-	content: '';
-	content: none;
+    content: '';
+    content: none;
 }
 table {
-	border-collapse: collapse;
-	border-spacing: 0;
+    border-collapse: collapse;
+    border-spacing: 0;
 }
 
 html {
@@ -134,8 +134,31 @@ strong {
 }
 
 code {
+    display: inline-block;
     font-family: "Fira Mono";
-    border: 1px solid;
+    border: 1px solid #b5b5b5;
+    background-color: #ebebeb;
+    line-height: 1;
+    font-size: 80%;
+    padding: 0.1em 0.2em;
+    border-radius: 0.2em;
+    vertical-align: middle;
+}
+
+pre {
+    border: 1px solid #b5b5b5;
+    background-color: #ebebeb;
+    padding: 0.4rem 1rem;
+    overflow-x: scroll;
+}
+
+pre > code {
+    display: initial;
+    border: none;
+    padding: 0;
+    border-radius: 0;
+    vertical-align: initial;
+    background-color: none;
 }
 
 
@@ -168,8 +191,22 @@ header {
 
 }
 
-p {
+p, pre {
     margin-bottom: 1.1875rem;
+}
+
+ul, ol {
+    margin-bottom: 1.1875rem;
+}
+
+ul {
+    list-style: disc inside none;
+    padding-left: 1em;
+}
+
+ul ul, ol ul, ul ol, ol ol {
+    margin-bottom: 0;
+    padding-left: 2em
 }
 
 a {
@@ -225,74 +262,74 @@ main {
 
 @media only screen and (max-width: 1100px) {
     body {
-	padding-top: 1.6rem;
+    padding-top: 1.6rem;
     }
 
     main {
-	max-width: 800px;
+    max-width: 800px;
     }
 
     article {
-	padding: 0;
+    padding: 0;
     }
 
     header {
-	position: relative;
-	margin-bottom: 1.8em;
-	max-width: 800px;
+    position: relative;
+    margin-bottom: 1.8em;
+    max-width: 800px;
     }
 
     header nav {
-	flex-flow: row;
-	justify-content: space-between;
+    flex-flow: row;
+    justify-content: space-between;
     }
 }
 
 @media only screen and (max-width: 950px) {
     body {
-	font-size: 0.9rem;
+    font-size: 0.9rem;
     }
 
     main {
-	max-width: 700px;
+    max-width: 700px;
     }
 
     article {
-	padding: 0 36px;
+    padding: 0 36px;
     }
 
     header {
-	max-width: 700px;
-	padding: 0 36px;
+    max-width: 700px;
+    padding: 0 36px;
     }
 
     header nav {
-	flex-flow: row wrap;
+    flex-flow: row wrap;
     }
 }
 
 @media only screen and (max-width: 600px) {
     body {
-	padding-top: 0;
+    padding-top: 0;
     }
     header {
-	padding: 0;
+    padding: 0;
     }
     header nav a {
-	flex-basis: 50%;
-	text-align: center;
+    flex-basis: 50%;
+    text-align: center;
     }
 }
 
 @media only screen and (max-width: 400px) {
     body {
-	font-size: 0.68rem;
+    font-size: 0.68rem;
     }
     article {
-	padding: 0 24px;
+    padding: 0 24px;
     }
 
     .hero .title {
-	margin-bottom: 0.8em;
+    margin-bottom: 0.8em;
     }
 }

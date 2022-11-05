@@ -1,8 +1,8 @@
 ---
 title: Computation Models
 tags: #theory_of_computation, #computer_science
-created_on: 2022-07-19
-updated_on: 2022-07-24
+created: 2022-07-19
+updated: 2022-07-24
 ---
 
 <div class="card draft">

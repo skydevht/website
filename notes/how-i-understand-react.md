@@ -1,8 +1,8 @@
 ---
 title: How I understand React
 tags: #react_native, #javascript, #programming
-created_on: 2022-05-02
-updated_on: 2022-07-21
+created: 2022-05-02
+updated: 2022-07-21
 ---
 
 Every time I learn a new language, library or framework, I like to form a mental image of how it works and why it works that way. It helps tremendously with being able to provide practical solutions to business problems if you can discern their pros and cons easily.

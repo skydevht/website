@@ -1,8 +1,8 @@
 ---
 title: The usage of React Hooks
 tags: #react, #javascript
-created_on: 2022-05-02
-updated_on: 2022-07-21
+created: 2022-05-02
+updated: 2022-07-21
 ---
 
 Functional components were a part of React before the introduction of Hooks. But their usage was restricted to creating pure components, as they did not possess the more complex lifecycle and state management of a class component. Hooks add these to functional components and allow us an easier way to reuse functionalities.
@@ -14,7 +14,7 @@ What are hooks? Hooks are functions. And like all functions, you provide them wi
 Let's start with the basic: the function component. It accepts props as parameters and return a component tree. You can take the following as an example.
 
 ```javascript
-const Message = (props) => t
+const Message = (props) => {
   return <p>{props.text}</p>
 }
 ```
