@@ -4,7 +4,7 @@
   <div class="mb-3 text-sm flex justify-between ">
     <div>
       {{ if .Site.Params.displayDate }}
-      {{ T "post.at" }} &mdash; {{ .Date | time.Format (T "timeformat") }}
+        {{ T "post.at" }} &mdash; {{ .Date | time.Format (T "timeformat") }}
       {{ end }}
       {{ if .Draft }}
       <span class="ml-3 tag">
@@ -14,9 +14,8 @@
     </div>
     {{ if .Params.tags }}
     <div>
-      {{ range $tag := .Params.tags }}
-      {{ $url := printf "tags/%s" $tag | relLangURL }}
-      <a class="ml-1" href="{{ $url }}">#{{ . }}</a>
+      {{ range (.GetTerms "tags") }}
+        <a class="ml-1" href="{{ .Permalink }}">#{{ .LinkTitle }}</a>
       {{ end }}
     </div>
     {{ end }}
