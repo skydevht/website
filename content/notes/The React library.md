@@ -30,3 +30,33 @@ The `useEffect` hook is mostly to sync the React part of your application and an
 The `deps` array plays  the same role in other hooks like `useCallback` and `useMemo`, it lets the execution system of the component lets when to carry out the hook operation. In the case of the `useCallback`, it's saving the new function and to compute a new value using the function provided to `useMemo` 
 
 With the hooks, we can make the pure function – the specification of the component's behavior – become stateful in practice while retaining the same functional paradigm. The actual execution of the behavior, done by the React library, is where the magic happens.
+
+## Custom Hooks
+
+Custom hooks are simple. They are functions which encapsulate your previous usage of the [[Hooks in React]]. Thus, logic become reusable throughout your components. 
+
+The direct usage can be: 
+```js
+const [data, setData] = useState()
+const useEffect(() => {
+	getData().then(res => setData(res));
+}, [])
+```
+
+We can create a custom hook `useData` like this:
+```js
+function useData() {
+	const [data, setData] = useState()
+	const useEffect(() => {
+		getData().then(res => setData(res));
+	}, [])
+	return data;
+}
+```
+
+Its usage in the component would be:
+```js
+const data = useData()
+```
+
+Readability and maintainability is improved by refactoring to custom hooks.
