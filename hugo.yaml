@@ -19,11 +19,3 @@ menu:
       name: "About"
       pageRef: 'about'
       weight: 20
-    - identifier: 'portfolio'
-      name: "What I've done"
-      pageRef: '/portfolio'
-      weight: 20
-    - identifier: 'antilibrary'
-      name: 'Antilibrary'
-      pageRef: '/'
-      weight: 30
