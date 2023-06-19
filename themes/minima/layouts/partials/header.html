@@ -13,11 +13,13 @@
         <li class="ml-2 mr-2"><a href="{{ .Identifier | relLangURL }}">{{ T .Identifier | default .Name }}</a></li>
         {{ end }}
       </ul>
+      {{ if $.Site.Home.AllTranslations }}
       <ul class="flex item-center text-sm font-bold">
         {{ range $.Site.Home.AllTranslations }}
         <li class="ml-2"><a href="{{ .Permalink }}">{{ .Language.LanguageName }}</a></li>
         {{ end}}
       </ul>
+      {{ end}}
     </nav>
   </div>
 </header>

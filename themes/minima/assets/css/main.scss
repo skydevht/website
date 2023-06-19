@@ -1,3 +1,4 @@
+@import "./fonts.scss";
 @import "./pre.scss";
 @import "./theme.scss";
 @import "./atom.scss";
@@ -13,7 +14,7 @@
 }
 
 html {
-  font-size: 16px;
+  font-size: 21px;
   -webkit-text-size-adjust: 100%;
   -ms-overflow-style: -ms-autohiding-scrollbar;
   box-sizing: border-box;
@@ -22,7 +23,7 @@ html {
 
 body {
   margin: 0 16px;
-  font-family: var(--font);
+  font-family: Charter, serif;
   font-weight: 400;
   line-height: 1.6;
   background-image: var(--back-image);
