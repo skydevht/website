@@ -1,7 +1,7 @@
 ---
 title: Fast or Fun
-slug: fast-or-fun
-published_date: 2022-11-23
+url: fast-fun
+publishdate: 2022-11-23
 tags: [thinking]
 ---
 

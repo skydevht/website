@@ -1,7 +1,7 @@
 ---
 title: Doing Smalltalk
-slug: doing-smalltalk
-published_date: 2022-11-17
+url: smalltalk
+publishdate: 2022-11-17
 tags: [smalltalk, pharo]
 ---
 

@@ -1,8 +1,8 @@
 ---
 title: Loops in Common Lisp
-slug: loops-in-lisp
+url: loops-lisp
 type: notes
-published_date: 2022-11-15
+publishdate: 2022-11-15
 tags: [common lisp]
 ---
 

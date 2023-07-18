@@ -1,7 +1,7 @@
 ---
 title: Programming Language Theory
-slug: plt
-published_date: 2022-11-25
+url: plt
+publishdate: 2022-11-25
 tags: [thinking, plt]
 ---
 

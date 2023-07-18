@@ -4,12 +4,14 @@
   <p class="mt-0 mb-0">{{ .Site.Author.status }}</p>
   <p class="mt-3 mb-3 home-intro">{{ .Site.Author.description | markdownify | safeHTML }}</p>
   <h3 class="mt-6 mb-4 text-2xl font-bold">Notes</h3>
-  <div>
-    {{ range (where .Site.RegularPages "Type" "notes").Reverse }}
-      {{ if ne .Page.Layout "search" }}
-        <span></span>
-        {{ partial "item.html" . }}
+    {{ range (where .Site.RegularPages "Section" "notes").GroupBy "CurrentSection" }}
+      <h3 class="text-2xl mt-6">{{ .Key.Title }}</h3>
+      {{ range .Pages }}
+        {{ if ne .Page.Layout "search" }}
+          {{ partial "item.html" . }}
+        {{ end }}
       {{ end }}
+      <hr>
     {{ end }}
   </div>
   {{ if .Site.Params.friends.feeds }}

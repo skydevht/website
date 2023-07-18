@@ -1,6 +1,7 @@
 ---
 title: Antilibrary
 type: page
+url: antilibrary
 ---
 
 This is a catalog of unread books.

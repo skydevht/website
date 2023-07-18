@@ -1,7 +1,7 @@
 ---
 title: Logic Programming with Prolog
-slug: logic-programming-with-prolog
-published_date: 2023-01-06
+url: prolog
+publishdate: 2023-01-06
 tags: [prolog]
 ---
 My first programming languages was C, which is part of the Fortran family. Lately, I've been learning fundamentally different languages, starting with Lisp and the more modern Clojure. I've taken a brief look at Forth. The latest I've tried is Prolog. And it was by far the most enlightening experience I had.

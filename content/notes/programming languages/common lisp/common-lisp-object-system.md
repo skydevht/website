@@ -1,7 +1,7 @@
 ---
 title: Common Lisp Object System (CLOS)
-slug: clos
-published_date: 2022-11-22
+url: clos
+publishdate: 2022-11-22
 tags: [common lisp]
 ---
 

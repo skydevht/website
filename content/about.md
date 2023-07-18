@@ -1,6 +1,7 @@
 ---
 title: About me
 type: page
+url: about
 ---
 
 # Welcome
