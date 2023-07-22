@@ -1,0 +1,13 @@
+{{ define "main" }}
+<main>
+  {{ range (where .Site.RegularPages "Section" "notes").GroupBy "CurrentSection" }}
+  <h3 class="">{{ .Key.Title }}</h3>
+    {{ range .Pages }}
+      {{ if ne .Page.Layout "search" }}
+        {{ partial "item.html" . }}
+      {{ end }}
+    {{ end }}
+  <hr>
+  {{ end }}
+</main>
+{{ end }}

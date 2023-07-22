@@ -1,0 +1,8 @@
+---
+- name: Deploy
+  hosts: hescaide.me
+  remote_user: hash
+
+  tasks:
+  - name: 
+    

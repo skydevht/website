@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+      {{ if .IsHome }}
+      {{ .Site.Title }} {{ if .Site.Params.subtitle }} - {{ .Site.Params.subtitle }} {{ end }}
+      {{ else }}
+      {{ .Site.Title }} - {{ .Title }}
+      {{ end }}
+    </title>
+    <link rel="stylesheet" href="/css/classless.css">
+    <!-- favicon -->
+    {{ $favicon := "favicon.ico" }}
+    <link rel="shortcut icon" href="{{ $favicon | relURL }}" type="image/x-icon" />
+    <!-- styles -->
+  </head>
+  <body>
+    <header>
+      <nav>
+        <ul>
+          <li>
+            <a href="/">Hash's Notes</a>
+          </li>
+          {{ range .Site.Menus.main }}
+            <li class="float-right"><a href="{{ .Identifier | relLangURL }}">{{ T .Identifier | default .Name }}</a></li>
+          {{ end }}
+        </ul>
+    </header>
+    {{ block "main" . }} {{ end }}
+    <footer>
+      <hr />
+      <h5>Hash's Notes</h5>
+      <p>© 2023</p>
+    </footer>
+  </body>
+</html>

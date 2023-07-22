@@ -4,11 +4,7 @@ type: page
 url: about
 ---
 
-# Welcome
-
-My name is Holy-Elie Scaide, but you can call me Hash.
-
-I am a software engineer working as a freelancer. 
+My name is Holy-Elie Scaide, but you can call me Hash. I am a software engineer working as a freelancer. 
 
 I strongly believe that technology, specifically software systems, should be designed to enhance people's lives. As a professional, my aim is to develop user-friendly systems that seamlessly integrate with other tools to boost efficiency and productivity.
 
