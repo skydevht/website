@@ -4,7 +4,13 @@
   <h3 class="">{{ .Key.Title }}</h3>
     {{ range .Pages }}
       {{ if ne .Page.Layout "search" }}
-        {{ partial "item.html" . }}
+      <div>
+        {{ if .Page.Params.link }}
+        <a class="text-lg font-bold" href="{{ .Page.Params.link }}">{{ .Title }}</a>
+        {{ else }}
+        <a class="text-lg font-bold" href="{{ .RelPermalink }}">{{ .Title }}</a>
+        {{ end }}
+      </div>
       {{ end }}
     {{ end }}
   <hr>

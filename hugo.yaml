@@ -1,7 +1,6 @@
 baseURL: 'https://hescaide.me/'
 languageCode: 'en-us'
 title: Holy-Elie Scaide's Notes
-theme: minima
 params:
   brand: Hash's Notes
   switch: ["🌚", "🌝"]
