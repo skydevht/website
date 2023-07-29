@@ -1,19 +1,19 @@
 {{ define "main" }}
-<main>
+<main class="home">
+    <p class="description">{{.Page.Content }}</p>
   {{ range (where .Site.RegularPages "Section" "notes").GroupBy "CurrentSection" }}
-  <h3 class="">{{ .Key.Title }}</h3>
+  <h3 class="section-title">{{ .Key.Title }}</h3>
     {{ range .Pages }}
       {{ if ne .Page.Layout "search" }}
       <div>
         {{ if .Page.Params.link }}
-        <a class="text-lg font-bold" href="{{ .Page.Params.link }}">{{ .Title }}</a>
+        <a class="" href="{{ .Page.Params.link }}">{{ .Title }}</a>
         {{ else }}
-        <a class="text-lg font-bold" href="{{ .RelPermalink }}">{{ .Title }}</a>
+        <a class="" href="{{ .RelPermalink }}">{{ .Title }}</a>
         {{ end }}
       </div>
       {{ end }}
     {{ end }}
-  <hr>
   {{ end }}
 </main>
 {{ end }}

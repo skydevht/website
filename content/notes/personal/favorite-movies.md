@@ -26,6 +26,7 @@ I don't have lots of old movies as some special effects are pretty distracting w
 * Edge of Tomorrow (2014)
 * Ford v Ferrari (2019)
 * Fury (2014)
+* Gravity (2013)
 * Greyhound (2020)
 * The Hateful Eight (2015)
 * Inglourious Basterds (2009)

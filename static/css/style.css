@@ -1,0 +1,70 @@
+html {
+  font-size: 100%;
+}
+body {
+  font-family: Charter, sans-serif;
+  font-size: 1.28rem;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: Charter, sans-serif;
+  font-variant: initial;
+  font-weight: bold;
+}
+
+h2 {
+  font-size: 1.74rem;
+}
+
+a[href] {
+    /* text-decoration: none; */
+    color: black;
+    text-decoration-color: black;
+    text-decoration-style: dotted;
+}
+
+header {
+    margin-top: 0;
+}
+
+main, nav > ul {
+    width: 800px;
+    margin: 0 auto 0;
+}
+
+nav > ul li {
+    font-size: 1.534rem;
+    font-weight: bold;
+    border-bottom: 4px solid black;
+}
+
+nav > ul > li a[href] {
+    text-decoration: none;
+}
+
+/* Homepage */
+
+.homepage .section-title {
+    font-size: 2.126rem
+}
+
+/* Notes */
+
+article h2, article h3 {
+    border-bottom: 1px dotted black;
+}
+
+article h2:before, article h3:before {
+    display: none;
+}
+
+article .title {
+    font-size: 4.224rem;
+    text-align: center;
+    margin-top: 0.776em;
+    margin-bottom: 1.08em;
+}
+
+/* article * {
+  padding-left: 0.62em;
+} */
